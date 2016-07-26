@@ -3,7 +3,9 @@
 
 Welcome to the Android Guidelines repo 👋 
 
-This repository is used to house all of our project guidelines for the Buffer App on the Android Platform. Here you'll find:
+This repository is used to house all of our project guidelines for the Buffer App on the Android Platform.  
+  
+Here you'll find:
 
 1. [Code Quality](/Code_Quality)  
   * [CheckStyle Configuration](/Code_Quality/checkstyle)  
