@@ -15,7 +15,7 @@ Here you'll find:
 ##Licence
 
 ```
-Copyright 2016 Buffer Ltd.
+Copyright 2016 Buffer, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
