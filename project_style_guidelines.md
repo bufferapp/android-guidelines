@@ -1,7 +1,7 @@
 #Android Project Guidelines
 ---------------------------
 
-The aim of this document is to define project guidelines. These should be followed throughout the Android project in-order to help us to keep our codebase clean and consistent - a lot of this will be enforced by code quality checks through jenkins, but it's important to be mindful for the things that may not be picked up 🙂
+The aim of this document is to define project guidelines. These should be followed throughout the Android project in order to help us to keep our code base clean and consistent. A lot of this will be enforced by code quality checks through Jenkins, but it's important to be mindful of the things that may not be picked up 🙂
 
 
 ##1. Project Guidelines
@@ -19,29 +19,29 @@ When commiting work, the project should maintain the following structure:
 	
 
 **AndroidTest** - Directory containing functional tests    
-**Test** - Directory containing Unit tests  
+**Test** - Directory containing unit tests  
 **CommonTest** - Directory containing shared test code for AndroidTest & Test  
-**main** - Directory containing Application code
+**main** - Directory containing application code
 
 The structure of the project should remain as documentation whenever you are modifying or adding new features. 
 
-Using this structure allows us to keep the Application code seperated from any Test-related code. The CommonTest directory allows us to share classes between the functional and unit tests, such as mock model creation and dagger test configuration classes.
+Using this structure allows us to keep the application code seperated from any test-related code. The CommonTest directory allows us to share classes between the functional and unit tests, such as mock model creation and dagger test configuration classes.
 
 
 ###1.2 File Naming
 
 ####1.2.1 Class Files
 
-Any Classes that you defined should be named using UpperCamelCase, for example this would look like:
+Any classes that you define should be named using UpperCamelCase, for example:
 
 	AndroidActivity, NetworkHelper, UserFragment, PerActivity
 	
 	
-Any classes extending an Android framework component should **always** end with the component name. For example these classes would look like:
+Any classes extending an Android framework component should **always** end with the component name. For example:
 
 	UserFragment, SignUpActivity, RateAppDialog, PushNotificationServer, NumberView
 
-We use UpperCamelCase as this helps to seperate the words used to create the name, making it easier to read. Naming classes to end with the framework component makes it super clear as to what the class is used for For example, if you're looking to make changes to the RegistrationDialog then this naming convention makes it super easy to locate.
+We use UpperCamelCase as this helps to seperate the words used to create the name, making it easier to read. Naming classes to end with the framework component makes it super clear as to what the class is used for. For example, if you're looking to make changes to the RegistrationDialog then this naming convention makes it super easy to locate.
 	
 ####1.2.1 Resource Files
 
@@ -49,7 +49,7 @@ When naming resource files you should be sure to name them using lowercase lette
 
 	activity_main, fragment_user, item_post
 
-This convention again makes it really easy to locate the layout for a specific file. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a layout file. Other than this, begining the file name with the component name makes it clear what component / class the layout file is being used for.
+This convention again makes it really easy to locate the layout for a specific file. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a layout file. Other than this, begining the file name with the component name makes it clear what component/class the layout file is being used for.
 
 
 ####1.2.2.1 Drawable Files
@@ -62,7 +62,7 @@ And a black cancel icon sized at 48dp would be named:
 
 	ic_cancel_48dp_black
 
-We use this naming convention so that a drawable file is recognisable by its name. If the colour and size are not stated in the name, then the developer needs to open the drawable file to find out this information - thus saving us a little bit of time :)
+We use this naming convention so that a drawable file is recognisable by its name. If the colour and size are not stated in the name, then the developer needs to open the drawable file to find out this information. This saves us a little bit of time :)
 
 Other drawable files should be named using the corresponding prefix, for example:
 
@@ -74,7 +74,7 @@ Other drawable files should be named using the corresponding prefix, for example
 | Progress   | progress_ | progress_circle_purple |
 | Divider    | divider_  | divider_grey           |
 
-This convention again helps to group similar items within Android Studio. It also makes it clear as to what the item is used for - for example, naming a resource button_cancel could mean anything! Is this a selector resource or a rounded button background. Correct naming helps to clear any ambiguity that may arise.
+This convention again helps to group similar items within Android Studio. It also makes it clear as to what the item is used for. For example, naming a resource button_cancel could mean anything! Is this a selector resource or a rounded button background? Correct naming helps to clear any ambiguity that may arise.
 
 When creating selector state resources, they should be named using the corresponding suffix:
 
@@ -131,7 +131,7 @@ Avoid not handling exceptions in the correct manner. For example:
     	} catch (NumberFormatException e) { }
 	}
 
-This gives no information to both the developer and the user, making it harder to debug and could also leave the user confused if something goes wrong. When catching an exception, we should also always log the error to the console for debug purposes and if necessary alert the user of the issue. For example:
+This gives no information to both the developer and the user, making it harder to debug and could also leave the user confused if something goes wrong. When catching an exception, we should also always log the error to the console for debugging purposes and if necessary alert the user of the issue. For example:
 
 
 	public void setCount(String count) {
@@ -304,11 +304,11 @@ When naming fields that reference views, the name of the view should be the last
 
 We name views in this way so that we can easily identify what the field corresponds to. For example, having a field named **user** is extremely ambiguous - giving it the name usernameView, userAvatarView or userProfieLayout helps to make it clear  exactly what view the field corresponds with.
 
-Previously, the names for views often ended in the view type. e.g acceptLoginButton, but quite often views change and it's easy to forgot to go back to java classes and update variable names
+Previously, the names for views often ended in the view type (e.g acceptLoginButton) but quite often views change and it's easy to forgot to go back to java classes and update variable names.
 
 ####2.2.2 Avoid naming with container types
 
-And leading on from the above, we should also avoid the use of container type names when creating variables for collections. For example, say we have an arraylist containing a list of userIds:
+Lleading on from the above, we should also avoid the use of container type names when creating variables for collections. For example, say we have an arraylist containing a list of userIds:
 
 Do:
 
@@ -318,7 +318,7 @@ Don't:
 
     List<String> userIdList = new ArrayList<>();
     
-If and When container names change in the future, the naming of these can often get forgotten about - and just like view naming, it's not entirely necessary. Correct naming of the container itself should provide enough information for what it is.
+If and when container names change in the future, the naming of these can often get forgotten about - and just like view naming, it's not entirely necessary. Correct naming of the container itself should provide enough information for what it is.
 
 
 ####2.2.3 Avoid simular naming
@@ -333,7 +333,7 @@ Distinguishing the difference between these at a first glance can be hard to und
 
 ####2.2.4 Number series naming
 
-When Andorid Studio auto-generates code for us, it's esy to leave things as they are - even when it generate horribly named parameters! For example, this isn't very nice:
+When Andorid Studio auto-generates code for us, it's easy to leave things as they are - even when it generate horribly named parameters! For example, this isn't very nice:
 
 	public void doSomething(String s1, String s2, String s3)
 	
@@ -369,7 +369,7 @@ Any acronyms for class names, variable names etc should be treated as words - th
 | generateXmlFile | generateXMLFile |
 
 
-####2.2.7 Avoid Justifying Variable Declarations
+####2.2.7 Avoid justifying variable declarations
 
 Any declaration of variables should not use any special form of alignment, for example:
 
@@ -385,7 +385,7 @@ Avoid doing this:
     private int userId      = 8;
     private int count       = 0;
 
-This makes variables difficult to read. It creates a stream of whitespace which is known to cause text to be difficult to read for certain learning difficulties.
+This creates a stream of whitespace which is known to make text difficult to read for certain learning difficulties.
 
 ####2.2.8 Use spaces for indentation
 
@@ -446,7 +446,7 @@ And instead, do this:
 	
 Not only is the extra line for the space not really necessary, but it makes blocks easier to follow when reading the code.
 
-####2.2.9.2 Inline If-Clauses
+####2.2.9.2 Inline if-clauses
 
 Sometimes it makes sense to use a single line for if statements. For example:
 
@@ -457,7 +457,7 @@ However, it only works for simple operations. Something like this would be bette
 
     if (user == null) throw new IllegalArgumentExeption("Oops, user object is required.");
     
-####2.2.9.3 Nested If-Conditions 
+####2.2.9.3 Nested if-conditions 
 
 Where possible, if-conditions should be combined to avoid over-complicated nesting. For example:
 
@@ -501,7 +501,7 @@ and takes up far fewer lines of code than this:
 
 ###2.2.10 Annotations
 
-####2.2.10.1 Annotation Practices
+####2.2.10.1 Annotation practices
 
 Taken from  the Android code style guide:
 
@@ -520,7 +520,7 @@ Annotations should always be used where possible. For example, using the @Nullab
     
     private void getName(@Nullable String name) { }
 
-####2.2.10.2 Annotation Style
+####2.2.10.2 Annotation style
 
 Annotations that are applied to a method or class should always be defined about the declaration, with only one per line:
 
@@ -575,7 +575,7 @@ We use Android Studio, so imports should always be ordered automatically. Howeve
 
 ####2.2.14 Logging
 
-Logging should be used to log useful error messages and / or other information that may be useful during development. 
+Logging should be used to log useful error messages and/or other information that may be useful during development. 
 
 
 | Log                               | Reason      |
@@ -634,7 +634,7 @@ For example:
 	
 Using this ordering convention helps to keep field declarations grouped, which increases both the locating of and readability of said fields.
 
-####2.2.16 Class Member Ordering
+####2.2.16 Class member ordering
 
 
 To improve code readability, it’s important to organise class members in a logical manner. The following order should be used to achieve this:
@@ -702,7 +702,7 @@ Any lifecycle methods used in Android framework classes should be ordered in the
     
     }
 
-####2.2.17 Method Parameter Ordering
+####2.2.17 Method parameter ordering
 
 When defining methods, parameters should be ordered to the following convention:
 
@@ -736,7 +736,7 @@ Do this:
     private static final int VALUE_TWO = 2;
     private static final int VALUE_THREE = 3;
     
-####2.2.20 Arguments in Fragments and Activities
+####2.2.20 Arguments in fragments and activities
 
 When we pass data using an Intent or Bundle, the keys for the values must use the conventions defined below:
 
@@ -785,7 +785,7 @@ Code lines should exceed no longer than 100 characters, this makes code more rea
 
 **Note:** For code comments and import statements it’s ok to exceed the 100 character limit.
     
-####2.2.21.1 Line-Wrapping Techniques
+####2.2.21.1 Line-wrapping techniques
 
 When it comes to line-wraps, there’s a few situations where we should be consistent in the way we format code.
 
@@ -838,7 +838,7 @@ And when calling that method we should break after the comma of each parameter:
             "thisIsSomeLongTextItsQuiteLongIsntIt");
             
             
-####2.2.22 Method Spacing
+####2.2.22 Method spacing
 
 There only needs to be a single line space between methods in a class, for example:
 
@@ -876,7 +876,7 @@ Not this:
     
 ###2.2.23 Comments
 
-####2.2.23.1 Inline Comments
+####2.2.23.1 Inline comments
 
 Where necessary, inline comments should be used to provide a meaningful description to the reader on what a specific piece of code does. They should only be used in situations where the code may be complex to understand. In most cases however, code should be written in a way that it easy to understand without comments 🙂
 
@@ -895,7 +895,7 @@ Whilst a method name should usually be enough to communicate a methods functiona
      * @param userId The user id of the user that is to be authenticated.
      */
      
-####2.2.23.3 Class Comments
+####2.2.23.3 Class comments
 
 When creating class comments they should be meaningful and descriptive, using links where necessary. For example:
 
@@ -912,9 +912,9 @@ Don’t leave author comments, these aren’t useful and provide no real meaning
       * Created By Joe 18/06/2016
       */
       
-###2.2.24 Sectioning Code
+###2.2.24 Sectioning code
 
-#### 2.2.24.1 Java Code
+#### 2.2.24.1 Java code
 
 If creating ‘sections’ for code, this should be done using the following approach, like this:
 
@@ -944,7 +944,7 @@ Not like this:
 
 This makes sectioned methods easier to located in a class.
 
-#### 2.2.24.2 Strings File
+#### 2.2.24.2 Strings file
 
 String resources defined within the string.xml file should be section by feature, for example:
 
@@ -958,7 +958,7 @@ String resources defined within the string.xml file should be section by feature
     
 Not only does this help keep the strings file tidy, but it makes it easier to find strings when they need altering.
     
-#### 2.2.24.3 RxJava Chaining
+#### 2.2.24.3 RxJava chaining
 
 When chaining Rx operations, every operator should be on a new line, breaking the line before the period `.` . For example:
 
@@ -981,7 +981,7 @@ This make it easier to understand the flow of operation within an Rx chain of ca
                 
 ### 2.2.25 Butterknife
 
-#### 2.2.25.1 Event Listeners
+#### 2.2.25.1 Event listeners
 
 Where possible, make use of Butterknife listener bindings. For example, when listening for a click event instead of doing this:
 
@@ -1082,7 +1082,7 @@ Two important things to note for String resources:
  
  - String resources should **always** be defined in the strings file and never hardcoded in layout or class files.
 
-#### 2.3.2.3 Styles and Themes
+#### 2.3.2.3 Styles and themes
 
 When defining both Styles & Themes, they should be named using UpperCamelCase. For example:
 
