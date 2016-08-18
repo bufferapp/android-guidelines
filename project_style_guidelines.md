@@ -113,7 +113,7 @@ Menu files do not need to be prefixed with the menu_ prefix. This is because the
 
 All resource file names should be plural, for example:
 
-	attr.xml, strings.xml, styles.xml, colors.xml, dimens.xml
+	attrs.xml, strings.xml, styles.xml, colors.xml, dimens.xml
 
 
 
