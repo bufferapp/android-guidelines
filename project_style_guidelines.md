@@ -321,7 +321,7 @@ Don't:
 If and when container names change in the future, the naming of these can often get forgotten about - and just like view naming, it's not entirely necessary. Correct naming of the container itself should provide enough information for what it is.
 
 
-####2.2.3 Avoid simular naming
+####2.2.3 Avoid similar naming
 
 Naming variables, method and / or classes with similar names can make it confusing for other developers reading over your code. For example:
 
