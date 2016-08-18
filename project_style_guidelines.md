@@ -8,7 +8,7 @@ The aim of this document is to define project guidelines. These should be follow
 
 ###1.1 Project Structure
 
-When commiting work, the project should maintain the following structure:
+When contributing work, the project should maintain the following structure:
 
 
 
@@ -23,7 +23,7 @@ When commiting work, the project should maintain the following structure:
 **CommonTest** - Directory containing shared test code for AndroidTest & Test  
 **main** - Directory containing application code
 
-The structure of the project should remain as documentation whenever you are modifying or adding new features. 
+The structure of the project should remain as defined above whenever you are modifying or adding new features. 
 
 Using this structure allows us to keep the application code seperated from any test-related code. The CommonTest directory allows us to share classes between the functional and unit tests, such as mock model creation and dagger test configuration classes.
 
@@ -41,7 +41,7 @@ Any classes extending an Android framework component should **always** end with 
 
 	UserFragment, SignUpActivity, RateAppDialog, PushNotificationServer, NumberView
 
-We use UpperCamelCase as this helps to seperate the words used to create the name, making it easier to read. Naming classes to end with the framework component makes it super clear as to what the class is used for. For example, if you're looking to make changes to the RegistrationDialog then this naming convention makes it super easy to locate.
+We use UpperCamelCase as this helps to seperate the words used to create the name, making it easier to read. Naming classes to end with the framework component makes it super clear as to what the class is used for. For example, if you're looking to make changes to the RegistrationDialog then this naming convention makes it really easy to locate that class.
 	
 ####1.2.1 Resource Files
 
@@ -49,7 +49,7 @@ When naming resource files you should be sure to name them using lowercase lette
 
 	activity_main, fragment_user, item_post
 
-This convention again makes it really easy to locate the layout for a specific file. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a layout file. Other than this, begining the file name with the component name makes it clear what component/class the layout file is being used for.
+This convention again makes it really easy to locate the specific layout file that you're looking for. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a file. Other than this, begining the file name with the component name makes it clear what component/class the layout file is being used for.
 
 
 ####1.2.2.1 Drawable Files
@@ -107,7 +107,7 @@ Not only does this approach makes it easy to find files in the directory hierarc
 
 ####1.2.2.3 Menu Files
 
-Menu files do not need to be prefixed with the menu_ prefix. This is because they are already in the menu package in the res directory, so it is not a requirement.
+Menu files do not need to be prefixed with the menu_ prefix. This is because they are already in the menu package in the resources directory, so it is not a requirement.
 
 ####1.2.2.4 Values Files
 
@@ -136,9 +136,9 @@ This gives no information to both the developer and the user, making it harder t
 
 	public void setCount(String count) {
     	try {
-        	mCount = Integer.parseInt(id);
+        	count = Integer.parseInt(id);
     	} catch (NumberFormatException e) { 
-    		mCount = 0;
+    		count = 0;
         	Log.e(TAG, "There was an error parsing the count " + e);
         	DialogFactory.showErrorMessage(R.string.error_message_parsing_count);
     	}
@@ -168,7 +168,7 @@ Catching exceptions generally should not be done:
 
 Why?
 
-*Do not do this. In almost all cases it is inappropriate to catch generic Exception or Throwable (preferably not Throwable because it includes Error exceptions). It is very dangerous because it means that Exceptions you never expected (including RuntimeExceptions like ClassCastException) get caught in application-level error handling. It obscures the failure handling properties of your code, meaning if someone adds a new type of Exception in the code you're calling, the compiler won't help you realize you need to handle the error differently. In most cases you shouldn't be handling different types of exception the same way.* - Android Code Style Guidelines
+*Do not do this. In almost all cases it is inappropriate to catch generic Exception or Throwable (preferably not Throwable because it includes Error exceptions). It is very dangerous because it means that Exceptions you never expected (including RuntimeExceptions like ClassCastException) get caught in application-level error handling. It obscures the failure handling properties of your code, meaning if someone adds a new type of Exception in the code you're calling, the compiler won't help you realize you need to handle the error differently. In most cases you shouldn't be handling different types of exception the same way.* - taken from the Android Code Style Guidelines
 
 Instead, catch the expected exception and handle it accordingly:
 
@@ -220,7 +220,7 @@ Using try-catch statements improves the readability of the code where the except
 
 ####2.1.5 Never use Finalizers
 
-*There are no guarantees as to when a finalizer will be called, or even that it will be called at all. In most cases, you can do what you need from a finalizer with good exception handling. If you absolutely need it, define a close() method (or the like) and document exactly when that method needs to be called. See InputStreamfor an example. In this case it is appropriate but not required to print a short log message from the finalizer, as long as it is not expected to flood the logs.* - (Android code style guidelines)
+*There are no guarantees as to when a finalizer will be called, or even that it will be called at all. In most cases, you can do what you need from a finalizer with good exception handling. If you absolutely need it, define a close() method (or the like) and document exactly when that method needs to be called. See InputStreamfor an example. In this case it is appropriate but not required to print a short log message from the finalizer, as long as it is not expected to flood the logs.* - taken from the Android code style guidelines
 
 
 
@@ -394,7 +394,7 @@ For blocks, 4 space indentation should be used:
 
 
     if (userSignedIn) {
-        mCount = 1;
+        count = 1;
     }
 
 Whereas for line wraps, 8 spaces should be used:
@@ -551,7 +551,7 @@ We do this as it makes the statement easier to read, for example the statement '
 
 The scope of local variables should be kept to a minimum (Effective Java Item 29). By doing so, you increase the readability and maintainability of your code and reduce the likelihood of error. Each variable should be declared in the innermost block that encloses all uses of the variable.
 
-Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do. - (Android code style guidelines)
+Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do. - taken from the Android code style guidelines
 
 
 ####2.2.12 Unused elements
@@ -560,7 +560,7 @@ All unused **fields**, **imports**, **methods** and **classes** should be remove
 
 ####2.2.13 Order Import Statements
 
-We use Android Studio, so imports should always be ordered automatically. However, in the case that they aren’t, then the following applies:
+Because we use Android Studio, so imports should always be ordered automatically. However, in the case that they may not be, then they should be ordered as follows:
 
 
 1. Android imports
@@ -570,8 +570,8 @@ We use Android Studio, so imports should always be ordered automatically. Howeve
 
 **Note:**
 
-- Imports should be alphabetically ordered within each grouping, with capital letters before lower case letters (e.g. Z before a).
-- There should be a blank line between each major grouping (android, com, junit, net, org, java, javax).
+- Imports should be alphabetically ordered within each grouping, with capital letters before lower case letters (e.g. Z before a)
+- There should be a blank line between each major grouping (android, com, junit, net, org, java, javax)
 
 ####2.2.14 Logging
 
