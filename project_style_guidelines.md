@@ -308,7 +308,7 @@ Previously, the names for views often ended in the view type (e.g acceptLoginBut
 
 ####2.2.2 Avoid naming with container types
 
-Lleading on from the above, we should also avoid the use of container type names when creating variables for collections. For example, say we have an arraylist containing a list of userIds:
+Leading on from the above, we should also avoid the use of container type names when creating variables for collections. For example, say we have an arraylist containing a list of userIds:
 
 Do:
 
@@ -516,7 +516,7 @@ More information about annotation guidelines can be found here.
 Annotations should always be used where possible. For example, using the @Nullable annotation should be used in cases where a field could be expected as null. For example:
 
 
-    @Nullable TextView mUserNameText;
+    @Nullable TextView userNameText;
     
     private void getName(@Nullable String name) { }
 
@@ -539,10 +539,10 @@ Annotations that are applied to a method or class should always be defined about
 When using the annotations on fields, you should ensure that the annotation remains on the same line whilst there is room. For example:
 
 
-    @Bind(R.id.layout_coordinator) CoordinatorLayout mCoordinatorLayout;
+    @Bind(R.id.layout_coordinator) CoordinatorLayout coordinatorLayout;
 
 
-    @Inject MainPresenter mMainPresenter;
+    @Inject MainPresenter mainPresenter;
     
     
 We do this as it makes the statement easier to read, for example the statement '@Inject SomeComponent mSomeName' reads as 'inject this component with this name'.
@@ -1157,27 +1157,6 @@ If a class we are testing contains many different methods, then the tests should
     DatabaseHelperUserTest
     DatabaseHelperPostsTest
     DatabaseHelperDraftsTest
-    
-All Test methods should be annotated with the `@Test` annotation, the methods should be named using the following template:
-
-
-    @Test
-    public void methodNamePreconditionExpectedResult() { }
-
-So for example, if we want to check that the signUp() method with an invalid email address fails the our test would look like:
-
-
-    @Test
-    public void signUpWithInvalidEmailFails() { }
-
-Tests should focus on testing only what the method name entitles, if there’s extra conditions being tested in your Test method then this should be moved to it’s own individual test.
-
-If a class we are testing contains many different methods, then the tests should be split across multiple test classes - this helps to keep the tests more maintainable and easier to locate. For example, a DatabaseHelper class may need to be split into multiple test classes such as :
-
-
-    DatabaseHelperUserTest
-    DatabaseHelperPostsTest
-    DatabaseHelperDraftsTest
 
 ### 2.4.2 Espresso tests
 
@@ -1200,11 +1179,11 @@ Chaining calls in this style not only helps us stick to less than 100 characater
             
 
 # 3. Gradle Style
-## 3.1 Dependancies
+## 3.1 Dependencies
 
 ### 3.1.1 Versioning
 
-Where applicable, versioning that is shared across multiple dependancies should be defined as a variable within the dependancies scope. For example:
+Where applicable, versioning that is shared across multiple dependencies should be defined as a variable within the dependencies scope. For example:
 
 
     final SUPPORT_LIBRARY_VERSION = '23.4.0'
@@ -1216,11 +1195,11 @@ Where applicable, versioning that is shared across multiple dependancies should 
     compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
     compile "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
     
-This makes it easy to update dependancies in the future as we only need to change the version number once for multiple dependancies.
+This makes it easy to update dependencies in the future as we only need to change the version number once for multiple dependencies.
 
 ### 3.1.2 Grouping
 
-Where applicable, dependancies should be grouped by package name, with spaces in-between the groups. For example:
+Where applicable, dependencies should be grouped by package name, with spaces in-between the groups. For example:
 
 
     compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
@@ -1235,7 +1214,7 @@ Where applicable, dependancies should be grouped by package name, with spaces in
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
 
-`compile` , `testCompile` and `androidTestCompile`  dependancies should also be grouped into their corresponding section. For example:
+`compile` , `testCompile` and `androidTestCompile`  dependencies should also be grouped into their corresponding section. For example:
 
 
     // App Dependencies
@@ -1248,12 +1227,12 @@ Where applicable, dependancies should be grouped by package name, with spaces in
     // Unit tests dependencies
     testCompile 'org.robolectric:robolectric:3.0'
 
-Both of these approaches makes it easy to locate specific dependancies when required as it keeps dependancy declarations both clean and tidy 🙌
+Both of these approaches makes it easy to locate specific dependencies when required as it keeps dependency declarations both clean and tidy 🙌
 
 
-### 3.1.3 Independent Dependancies
+### 3.1.3 Independent Dependencies
 
-Where dependancies are only used individually for application or test purposes, be sure to only compile them using `compile` , `testCompile` or `androidTestCompile` . For example, where the robolectric dependancy is only required for unit tests, it should be added using:
+Where dependencies are only used individually for application or test purposes, be sure to only compile them using `compile` , `testCompile` or `androidTestCompile` . For example, where the robolectric dependency is only required for unit tests, it should be added using:
 
 
     testCompile 'org.robolectric:robolectric:3.0' 
