@@ -333,7 +333,7 @@ Distinguishing the difference between these at a first glance can be hard to und
 
 ####2.2.4 Number series naming
 
-When Andorid Studio auto-generates code for us, it's easy to leave things as they are - even when it generate horribly named parameters! For example, this isn't very nice:
+When Android Studio auto-generates code for us, it's easy to leave things as they are - even when it generate horribly named parameters! For example, this isn't very nice:
 
 	public void doSomething(String s1, String s2, String s3)
 	
