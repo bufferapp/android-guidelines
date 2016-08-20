@@ -12,15 +12,15 @@ When contributing work, the project should maintain the following structure:
 
 
 
-	src/AndroidTest
-	src/Test
-	src/CommonTest
+	src/androidTest
+	src/test
+	src/commonTest
 	src/main
 	
 
-**AndroidTest** - Directory containing functional tests    
-**Test** - Directory containing unit tests  
-**CommonTest** - Directory containing shared test code for AndroidTest & Test  
+**androidTest** - Directory containing functional tests    
+**test** - Directory containing unit tests  
+**commonTest** - Directory containing shared test code for AndroidTest & Test  
 **main** - Directory containing application code
 
 The structure of the project should remain as defined above whenever you are modifying or adding new features. 
@@ -349,11 +349,11 @@ When naming fields, methods and classes they should:
 
 - Be readable: Efficient naming means we'll be able to look at the name and understand it instantly, reducing cognitive load on trying to decipher what the name means.
 
-- Be speakable: Names that are speakable avoids awkward conversations where you're trying to pronunce a badly named variable name.
+- Be speakable: Names that are speakable avoids awkward conversations where you're trying to pronounce a badly named variable name.
 
 - Be searchable: Nothing is worse than trying to search for a method or variable in a class to realise it's been spelt wrong or badly named. If we're trying to find a method that searches for a user, then searching for 'search' should bring up a result for that method.
 
-- Not use hungarian notation: Hungarian notation goes against the three points made above, so it should never be used!
+- Not use Hungarian notation: Hungarian notation goes against the three points made above, so it should never be used!
 
 
 ####2.2.6 Treat acronyms as words
@@ -408,10 +408,11 @@ Whereas for line wraps, 8 spaces should be used:
 
 ####2.2.9.1 Use standard brace style
 
-Braces should always be used on the same line as the code before them. For example avoid doing this:
+Braces should always be used on the same line as the code before them. For example, avoid doing this:
 
 
-    class SomeClass {
+    class SomeClass 
+    {
     	private void someFunction() 
     	{
         	if (isSomething) 
@@ -477,7 +478,7 @@ Try to avoid:
         }
     }
     
-This makes statements easier to read and removes the unecessary extra lines from the nested clauses.
+This makes statements easier to read and removes the unnecessary extra lines from the nested clauses.
 
 ####2.2.9.4 Ternary Operators
 
@@ -522,7 +523,7 @@ Annotations should always be used where possible. For example, using the @Nullab
 
 ####2.2.10.2 Annotation style
 
-Annotations that are applied to a method or class should always be defined about the declaration, with only one per line:
+Annotations that are applied to a method or class should always be defined in the declaration, with only one per line:
 
 
     @Annotation
@@ -545,7 +546,7 @@ When using the annotations on fields, you should ensure that the annotation rema
     @Inject MainPresenter mainPresenter;
     
     
-We do this as it makes the statement easier to read, for example the statement '@Inject SomeComponent mSomeName' reads as 'inject this component with this name'.
+We do this as it makes the statement easier to read. For example, the statement '@Inject SomeComponent mSomeName' reads as 'inject this component with this name'.
 
 ####2.2.11 Limit variable scope
 
@@ -571,7 +572,7 @@ Because we use Android Studio, so imports should always be ordered automatically
 **Note:**
 
 - Imports should be alphabetically ordered within each grouping, with capital letters before lower case letters (e.g. Z before a)
-- There should be a blank line between each major grouping (android, com, junit, net, org, java, javax)
+- There should be a blank line between each major grouping (android, com, JUnit, net, org, java, javax)
 
 ####2.2.14 Logging
 
@@ -603,7 +604,7 @@ All verbose and debug logs must be disabled on release builds. On the other hand
 
 ####2.2.15 Field Ordering
 
-Any fields declared at the top of a class file should be ordered in the follow order:
+Any fields declared at the top of a class file should be ordered in the following order:
 
 1. Enums
 2. Constants
@@ -749,7 +750,7 @@ Passing data to an activity must be done using a reference to a KEY, as defined 
 
 **Fragment**
 
-Passing data to a fragment must be done using a reference to a EXTRA, as defined as below:
+Passing data to a fragment must be done using a reference to an EXTRA, as defined as below:
 
 
     private static final String EXTRA_NAME = "EXTRA_NAME";
@@ -776,7 +777,7 @@ When creating new instances of a fragment or activity that involves passing data
     
 ####2.2.21 Line Length Limit
 
-Code lines should exceed no longer than 100 characters, this makes code more readable. Sometimes to achieve this, we may need to:
+Code lines should exceed no longer than 100 characters, this makes the code more readable. Sometimes to achieve this, we may need to:
 
 
 - Extract data to a local variable
@@ -977,7 +978,7 @@ When chaining Rx operations, every operator should be on a new line, breaking th
                      }
                 });
                 
-This make it easier to understand the flow of operation within an Rx chain of calls.
+This makes it easier to understand the flow of operation within an Rx chain of calls.
                 
 ### 2.2.25 Butterknife
 
@@ -1003,7 +1004,7 @@ Do this:
 
 ### 2.3.1 Use self=-closing tags
 
-When a View in an XML layout does not have any child views, self closing tags should be used.
+When a View in an XML layout does not have any child views, self-closing tags should be used.
 
 Do:
 
@@ -1143,7 +1144,7 @@ All Test methods should be annotated with the `@Test` annotation, the methods sh
     @Test
     public void methodNamePreconditionExpectedResult() { }
 
-So for example, if we want to check that the signUp() method with an invalid email address fails the our test would look like:
+So for example, if we want to check that the signUp() method with an invalid email address fails, the test would look like:
 
 
     @Test
@@ -1175,7 +1176,7 @@ When using the Espresso API, methods should be chained on new lines to make the 
             .perform(scrollTo())
             .check(matches(isDisplayed()))
             
-Chaining calls in this style not only helps us stick to less than 100 characaters per line but it also makes it easy to read the chain of events taking place in espresso tests. 
+Chaining calls in this style not only helps us stick to less than 100 characters per line but it also makes it easy to read the chain of events taking place in espresso tests. 
             
 
 # 3. Gradle Style
