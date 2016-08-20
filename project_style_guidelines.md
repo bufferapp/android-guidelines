@@ -964,7 +964,7 @@ Not only does this help keep the strings file tidy, but it makes it easier to fi
 When chaining Rx operations, every operator should be on a new line, breaking the line before the period `.` . For example:
 
 
-    return mDataManager.getPost()
+    return dataManager.getPost()
                 .concatMap(new Func1<Post, Observable<? extends Post>>() {
                     @Override
                      public Observable<? extends Post> call(Post post) {
