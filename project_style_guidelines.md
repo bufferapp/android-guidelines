@@ -36,30 +36,25 @@ Android kütüphanesinden extend edilmiş bileşen **her zaman** o bileşenin is
 
 BuyukKucuk harf şeklinde kullanılan class isimleri okunabilirlik açısından kolaylık sağlamaktadır. Ayrıca class'ları bileşenlerin isimlerine göre isimlendirme de hangi class'ın ne için kullanıldığı hakkında bize bilgi vermektedir. Örnek olarak RegistrationDialog bize kayıt ile ilgili işlemin bu dialog'da yapıldığını göstermektedir. 
 	
-####1.2.1 Resource Files
+####1.2.1 Resource Dosyaları
 
-When naming resource files you should be sure to name them using lowercase letters and underscores instead of spaces, for example:
+Resource dosyalarını isimlendirirken küçük harf kullanmalıyız ve boşuk yerine alt çizgi kullanmalıyız. Örnek olarak;
 
 	activity_main, fragment_user, item_post
 
-This convention again makes it really easy to locate the specific layout file that you're looking for. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a file. Other than this, begining the file name with the component name makes it clear what component/class the layout file is being used for.
+Bu şekilde kullanım, herhangi bir amaca yönelik oluşturulmuş layout dosyasını bulmamızda bize kolaylık sağlar. Android Studio'da layout kısmı alfabetik olarak sıralanmış durumdadır. Böylece activity_main şeklinde isim verildiğinde tüm aynı amaca hizmet eden layout'lar gruplanmış olacaktır.  
 
+####1.2.2.1 Drawable Dosyaları
 
-####1.2.2.1 Drawable Files
+Drawable resource dosyaları **ic_** ön eki ile adlandırılmalıdır. Sonuna da boyutu yazılmalıdır. 
 
-Drawable resource files should be named using the **ic_** prefix along with the size and color of the asset. For example, white accept icon sized at 24dp would be named:
+	ic_entrance_24dp , ic_accept_32dp
 
-	ic_accept_24dp_white
+Bu şekilde bir isimlendirme. Drawable klasörlerinde bulunan ikonların boyutlarının açılmadan öğrenilmesine yardımcı olacaktır. 
 
-And a black cancel icon sized at 48dp would be named:
+Diğer drawable bileşenlerinin kullanımı aşağıdaki şekilde olmalıdır. 
 
-	ic_cancel_48dp_black
-
-We use this naming convention so that a drawable file is recognisable by its name. If the colour and size are not stated in the name, then the developer needs to open the drawable file to find out this information. This saves us a little bit of time :)
-
-Other drawable files should be named using the corresponding prefix, for example:
-
-| Type       | Prefix    | Example                |
+| Tipi       | Ön Eki    | Örnek                |
 |------------|-----------|------------------------|
 | Selector   | selector_ | selector_button_cancel |
 | Background | bg_       | bg_rounded_button      |
@@ -67,11 +62,11 @@ Other drawable files should be named using the corresponding prefix, for example
 | Progress   | progress_ | progress_circle_purple |
 | Divider    | divider_  | divider_grey           |
 
-This convention again helps to group similar items within Android Studio. It also makes it clear as to what the item is used for. For example, naming a resource button_cancel could mean anything! Is this a selector resource or a rounded button background? Correct naming helps to clear any ambiguity that may arise.
+Bu şekilde isimlendirme benzer bileşenlerin Android Studio ile gruplandırılmasına yardımcı olmaktadır. Aynı zamanda hangi bileşenin nerede kullanıldığına dair bilgi vermektedir. Doğru isimlendirme uygulama geliştirirken meydana gelecek ikilikleri engellemektedir. 
 
-When creating selector state resources, they should be named using the corresponding suffix:
+Selector state resource dosyası oluşurken de duruma göre son ek vermemiz gerekmektedir. 
 
-| State    | Suffix    | Example             |
+| Durum    | Son Ek    | Örnek             |
 |----------|-----------|---------------------|
 | Normal   | _normal   | btn_accept_normal   |
 | Pressed  | _pressed  | btn_accept_pressed  |
@@ -79,13 +74,12 @@ When creating selector state resources, they should be named using the correspon
 | Disabled | _disabled | btn_accept_disabled |
 | Selected | _selected | btn_accept_selected |
 
-Using clear prefixes such as the above helps to make it absolutely obvious as to what a selector state resource is used for. Prefixing resources with the colour or any other identifier again requires the developer to open the selector file to be educated in what the different selector state resources are.
 
-####1.2.2.2 Layout Files
+####1.2.2.2 Layout Dosyaları
 
-When naming layout files, they should be named starting with the name of the Android Component that they have been created for. For example:
+Layout dosyaları aşağıdaki şekilde Java class'ına göre oluşturulmalıdır. 
 
-| Component        | Class Name      | Layout Name       |
+| Bileşen          | Class İsmi      | Layout İsmi       |
 |------------------|-----------------|-------------------|
 | Activity         | MainActivity    | activity_main     |
 | Fragment         | MainFragment    | fragment_main     |
@@ -93,21 +87,16 @@ When naming layout files, they should be named starting with the name of the And
 | Widget           | UserProfileView | view_user_profile |
 | AdapterView Item | N/A             | item_follower     |
 
-**Note:** If you create a layout using the merge tag then the layout_ prefix should be used.
 
-Not only does this approach makes it easy to find files in the directory hierarchy, but it really helps when needing to identify what corresponding class a layout file belongs to.
+####1.2.2.3 Menu Dosyaları
 
+Menu dosyalarının menu_ ön eki ile isimlendirmesine gerek yoktur. Zaten bu dosyalar menu klasörü içinde bulunmaktadır. 
 
-####1.2.2.3 Menu Files
+####1.2.2.4 Values Dosyaları
 
-Menu files do not need to be prefixed with the menu_ prefix. This is because they are already in the menu package in the resources directory, so it is not a requirement.
-
-####1.2.2.4 Values Files
-
-All resource file names should be plural, for example:
+Values kısmında bulunan dosyalar çoğul olmalıdır. 
 
 	attrs.xml, strings.xml, styles.xml, colors.xml, dimens.xml
-
 
 
 ##2. Code Guidelines
