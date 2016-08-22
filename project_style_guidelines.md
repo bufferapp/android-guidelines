@@ -34,12 +34,11 @@ Using this structure allows us to keep the application code seperated from any t
 
 Any classes that you define should be named using UpperCamelCase, for example:
 
-	AndroidActivity, NetworkHelper, UserFragment, PerActivity
-
+`AndroidActivity`, `NetworkHelper`, `UserFragment`, `PerActivity`
 
 Any classes extending an Android framework component should **always** end with the component name. For example:
 
-	UserFragment, SignUpActivity, RateAppDialog, PushNotificationServer, NumberView
+`UserFragment`, `SignUpActivity`, `RateAppDialog`, `PushNotificationServer`, `NumberView`
 
 We use UpperCamelCase as this helps to seperate the words used to create the name, making it easier to read. Naming classes to end with the framework component makes it super clear as to what the class is used for. For example, if you're looking to make changes to the RegistrationDialog then this naming convention makes it really easy to locate that class.
 
@@ -47,20 +46,20 @@ We use UpperCamelCase as this helps to seperate the words used to create the nam
 
 When naming resource files you should be sure to name them using lowercase letters and underscores instead of spaces, for example:
 
-	activity_main, fragment_user, item_post
+`activity_main`, `fragment_user`, `item_post`
 
-This convention again makes it really easy to locate the specific layout file that you're looking for. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a file. Other than this, begining the file name with the component name makes it clear what component/class the layout file is being used for.
+This convention again makes it really easy to locate the specific layout file that you're looking for. Within Android Studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a file. Other than this, begining the file name with the component name makes it clear what component/class the layout file is being used for.
 
 
 #### 1.2.2.1 Drawable Files
 
 Drawable resource files should be named using the **ic_** prefix along with the size and color of the asset. For example, white accept icon sized at 24dp would be named:
 
-	ic_accept_24dp_white
+`ic_accept_24dp_white`
 
 And a black cancel icon sized at 48dp would be named:
 
-	ic_cancel_48dp_black
+`ic_cancel_48dp_black`
 
 We use this naming convention so that a drawable file is recognisable by its name. If the colour and size are not stated in the name, then the developer needs to open the drawable file to find out this information. This saves us a little bit of time :)
 
@@ -104,7 +103,6 @@ When naming layout files, they should be named starting with the name of the And
 
 Not only does this approach makes it easy to find files in the directory hierarchy, but it really helps when needing to identify what corresponding class a layout file belongs to.
 
-
 #### 1.2.2.3 Menu Files
 
 Menu files do not need to be prefixed with the menu_ prefix. This is because they are already in the menu package in the resources directory, so it is not a requirement.
@@ -113,9 +111,7 @@ Menu files do not need to be prefixed with the menu_ prefix. This is because the
 
 All resource file names should be plural, for example:
 
-	attrs.xml, strings.xml, styles.xml, colors.xml, dimens.xml
-
-
+`attrs.xml`, `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`
 
 ## 2. Code Guidelines
 
@@ -1055,7 +1051,7 @@ For example:
         android:layout_height="wrap_content" />
 
 
-Views that typically are only one per layout, such as a toolbar, can simply be given the id of it's view type. E.g.```toolbar```.
+Views that typically are only one per layout, such as a toolbar, can simply be given the id of it's view type. E.g.`toolbar`.
 
 #### 2.3.2.2 Strings
 
