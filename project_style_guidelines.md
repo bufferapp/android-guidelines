@@ -11,12 +11,12 @@ The aim of this document is to define project guidelines. These should be follow
 When contributing work, the project should maintain the following structure:
 
 
-
-	src/androidTest
-	src/test
-	src/commonTest
-	src/main
-	
+```bash
+src/androidTest
+src/test
+src/commonTest
+src/main
+``` 
 
 **androidTest** - Directory containing functional tests    
 **test** - Directory containing unit tests  
@@ -34,20 +34,20 @@ Using this structure allows us to keep the application code seperated from any t
 
 Any classes that you define should be named using UpperCamelCase, for example:
 
-	AndroidActivity, NetworkHelper, UserFragment, PerActivity
-	
-	
+    AndroidActivity, NetworkHelper, UserFragment, PerActivity
+    
+    
 Any classes extending an Android framework component should **always** end with the component name. For example:
 
-	UserFragment, SignUpActivity, RateAppDialog, PushNotificationServer, NumberView
+    UserFragment, SignUpActivity, RateAppDialog, PushNotificationServer, NumberView
 
 We use UpperCamelCase as this helps to seperate the words used to create the name, making it easier to read. Naming classes to end with the framework component makes it super clear as to what the class is used for. For example, if you're looking to make changes to the RegistrationDialog then this naming convention makes it really easy to locate that class.
-	
+    
 ####1.2.1 Resource Files
 
 When naming resource files you should be sure to name them using lowercase letters and underscores instead of spaces, for example:
 
-	activity_main, fragment_user, item_post
+    activity_main, fragment_user, item_post
 
 This convention again makes it really easy to locate the specific layout file that you're looking for. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a file. Other than this, begining the file name with the component name makes it clear what component/class the layout file is being used for.
 
@@ -56,11 +56,11 @@ This convention again makes it really easy to locate the specific layout file th
 
 Drawable resource files should be named using the **ic_** prefix along with the size and color of the asset. For example, white accept icon sized at 24dp would be named:
 
-	ic_accept_24dp_white
+    ic_accept_24dp_white
 
 And a black cancel icon sized at 48dp would be named:
 
-	ic_cancel_48dp_black
+    ic_cancel_48dp_black
 
 We use this naming convention so that a drawable file is recognisable by its name. If the colour and size are not stated in the name, then the developer needs to open the drawable file to find out this information. This saves us a little bit of time :)
 
@@ -113,9 +113,7 @@ Menu files do not need to be prefixed with the menu_ prefix. This is because the
 
 All resource file names should be plural, for example:
 
-	attrs.xml, strings.xml, styles.xml, colors.xml, dimens.xml
-
-
+    attrs.xml, strings.xml, styles.xml, colors.xml, dimens.xml
 
 ##2. Code Guidelines
 
@@ -125,24 +123,27 @@ All resource file names should be plural, for example:
 
 Avoid not handling exceptions in the correct manner. For example:
 
-	public void setUserId(String id) {
-    	try {
-        	mUserId = Integer.parseInt(id);
-    	} catch (NumberFormatException e) { }
-	}
+```java
+public void setUserId(String id) {
+    try {
+        mUserId = Integer.parseInt(id);
+    } catch (NumberFormatException e) { }
+}
+```
 
 This gives no information to both the developer and the user, making it harder to debug and could also leave the user confused if something goes wrong. When catching an exception, we should also always log the error to the console for debugging purposes and if necessary alert the user of the issue. For example:
 
-
-	public void setCount(String count) {
-    	try {
-        	count = Integer.parseInt(id);
-    	} catch (NumberFormatException e) { 
-    		count = 0;
-        	Log.e(TAG, "There was an error parsing the count " + e);
-        	DialogFactory.showErrorMessage(R.string.error_message_parsing_count);
-    	}
-	}
+```java
+public void setCount(String count) {
+    try {
+        count = Integer.parseInt(id);
+    } catch (NumberFormatException e) { 
+        count = 0;
+        Log.e(TAG, "There was an error parsing the count " + e);
+        DialogFactory.showErrorMessage(R.string.error_message_parsing_count);
+    }
+}
+```
 
 Here we handle the error appropriately by:
 
@@ -156,15 +157,16 @@ Here we handle the error appropriately by:
 
 Catching exceptions generally should not be done:
 
-
-	public void openCustomTab(Context context, Uri uri) {
-    	Intent intent = buildIntent(context, uri);
-    	try {
-        	context.startActivity(intent);
-    	} catch (Exception e) { 
-        	Log.e(TAG, "There was an error opening the custom tab " + e);
-    	}
-	}
+```java
+public void openCustomTab(Context context, Uri uri) {
+    Intent intent = buildIntent(context, uri);
+    try {
+        context.startActivity(intent);
+    } catch (Exception e) { 
+        Log.e(TAG, "There was an error opening the custom tab " + e);
+    }
+}
+```
 
 Why?
 
@@ -172,46 +174,50 @@ Why?
 
 Instead, catch the expected exception and handle it accordingly:
 
-	public void openCustomTab(Context context, Uri uri) {
-    	Intent intent = buildIntent(context, uri);
-    	try {
-        	context.startActivity(intent);
-    	} catch (ActivityNotFoundException e) { 
-        	Log.e(TAG, "There was an error opening the custom tab " + e);
-    	}
-	}
-
+```java
+public void openCustomTab(Context context, Uri uri) {
+    Intent intent = buildIntent(context, uri);
+    try {
+        context.startActivity(intent);
+    } catch (ActivityNotFoundException e) { 
+        Log.e(TAG, "There was an error opening the custom tab " + e);
+    }
+}
+```
 
 ####2.1.3 Grouping exceptions
 
 Where exceptions execute the same code, they should be grouped in-order to increase readability and avoid code duplication. For example, where you may do this:
 
-	public void openCustomTab(Context context, @Nullable Uri uri) {
-    	Intent intent = buildIntent(context, uri);
-    	try {
-        	context.startActivity(intent);
-    	} catch (ActivityNotFoundException e) { 
-        	Log.e(TAG, "There was an error opening the custom tab " + e);
-    	} catch (NullPointerException e) { 
-        	Log.e(TAG, "There was an error opening the custom tab " + e);
-    	} catch (SomeOtherException e) { 
-    		// Show some dialog
-        }
-	}
+```java
+public void openCustomTab(Context context, @Nullable Uri uri) {
+    Intent intent = buildIntent(context, uri);
+    try {
+        context.startActivity(intent);
+    } catch (ActivityNotFoundException e) { 
+        Log.e(TAG, "There was an error opening the custom tab " + e);
+    } catch (NullPointerException e) { 
+        Log.e(TAG, "There was an error opening the custom tab " + e);
+    } catch (SomeOtherException e) { 
+        // Show some dialog
+    }
+}
+```
 
 You could do this:
 
-	public void openCustomTab(Context context, @Nullable Uri uri) {
-    	Intent intent = buildIntent(context, uri);
-    	try {
-        	context.startActivity(intent);
-    	} catch (ActivityNotFoundException e | NullPointerException e) { 
-        	Log.e(TAG, "There was an error opening the custom tab " + e);
-    	} catch (SomeOtherException e) { 
-    		// Show some dialog
-        }
-	}
-
+```java
+public void openCustomTab(Context context, @Nullable Uri uri) {
+    Intent intent = buildIntent(context, uri);
+    try {
+        context.startActivity(intent);
+    } catch (ActivityNotFoundException e | NullPointerException e) { 
+        Log.e(TAG, "There was an error opening the custom tab " + e);
+    } catch (SomeOtherException e) { 
+        // Show some dialog
+    }
+}
+```
 
 ####2.1.4 Using try-catch over throw exception
 
@@ -230,13 +236,15 @@ When declaring imports, use the full package declaration. For example:
 
 Don’t do this:
 
-
-    import android.support.v7.widget.*;
+```java
+import android.support.v7.widget.*;
+```
 
 Instead, do this 😃
 
-
-    import android.support.v7.widget.RecyclerView;
+```java
+import android.support.v7.widget.RecyclerView;
+```
 
 
 ####2.1.7 Don't keep unused imports
@@ -265,28 +273,33 @@ Not this:
 
 Not this:
 
-	sSomeStaticField, sUserNameText
+    sSomeStaticField, sUserNameText
 
 
 - All other fields also start with a lower case letter.
 
-
-    int numOfChildren; 
-    String username;
-
+```java
+int numOfChildren; 
+String username;
+```
 
 - Static final fields (known as constants) are ALL_CAPS_WITH_UNDERSCORES.
 
-
-    private static final int PAGE_COUNT = 0;
+```java
+private static final int PAGE_COUNT = 0;
+```
 
 Field names that do not reveal intention should not be used. For example,
 
-    int e; //number of elements in the list
+```java
+int e; //number of elements in the list
+```
 
 why not just give the field a meaningful name in the first place, rather than leaving a comment!
 
-    int numberOfElements;
+```java
+int numberOfElements;
+```
 
 That's much better!
     
@@ -312,11 +325,15 @@ Leading on from the above, we should also avoid the use of container type names 
 
 Do:
 
-    List<String> userIds = new ArrayList<>();
+```java
+List<String> userIds = new ArrayList<>();
+```
 
 Don't:
 
-    List<String> userIdList = new ArrayList<>();
+```java
+List<String> userIdList = new ArrayList<>();
+```
     
 If and when container names change in the future, the naming of these can often get forgotten about - and just like view naming, it's not entirely necessary. Correct naming of the container itself should provide enough information for what it is.
 
@@ -325,21 +342,24 @@ If and when container names change in the future, the naming of these can often 
 
 Naming variables, method and / or classes with similar names can make it confusing for other developers reading over your code. For example:
 
-	hasUserSelectedSingleProfilePreviously
+    hasUserSelectedSingleProfilePreviously
 
-	hasUserSelectedSignedProfilePreviously
-	
+    hasUserSelectedSignedProfilePreviously
+    
 Distinguishing the difference between these at a first glance can be hard to understand what is what. Naming these in a clearer way can make it easier for developers to navigate the fields in your code.
 
 ####2.2.4 Number series naming
 
 When Android Studio auto-generates code for us, it's easy to leave things as they are - even when it generate horribly named parameters! For example, this isn't very nice:
 
-	public void doSomething(String s1, String s2, String s3)
-	
+```java
+public void doSomething(String s1, String s2, String s3) {}
+```
+    
 It's hard to understand what these parameters do without reading the code. Instead:
-
-	public void doSomething(String userName, String userEmail, String userId)
+```java
+public void doSomething(String userName, String userEmail, String userId) {}
+```
 
 That makes it much easier to understand! Now we'll be able to read the code following the parameter with a much clearer understanding 🙂
 
@@ -375,33 +395,38 @@ Any declaration of variables should not use any special form of alignment, for e
 
 This is fine:
 
-    private int userId = 8;
-    private int count = 0;
-    private String username = "hitherejoe";
+```java
+private int userId = 8;
+private int count = 0;
+private String username = "hitherejoe";
+```
 
 Avoid doing this:
 
-    private String username = "hitherejoe";
-    private int userId      = 8;
-    private int count       = 0;
+```java
+private String username = "hitherejoe";
+private int userId      = 8;
+private int count       = 0;
+```
 
 This creates a stream of whitespace which is known to make text difficult to read for certain learning difficulties.
 
 ####2.2.8 Use spaces for indentation
 
-
 For blocks, 4 space indentation should be used:
 
-
-    if (userSignedIn) {
-        count = 1;
-    }
+```java
+if (userSignedIn) {
+    count = 1;
+}
+```
 
 Whereas for line wraps, 8 spaces should be used:
 
-
-    String userAboutText = 
-            "This is some text about the user and it is pretty long, can you see!"
+```java
+String userAboutText = 
+        "This is some text about the user and it is pretty long, can you see!"
+```
 
 
 ###2.2.9 If-Statements
@@ -410,53 +435,58 @@ Whereas for line wraps, 8 spaces should be used:
 
 Braces should always be used on the same line as the code before them. For example, avoid doing this:
 
-
-    class SomeClass 
+```java
+class SomeClass 
+{
+    private void someFunction() 
     {
-    	private void someFunction() 
-    	{
-        	if (isSomething) 
-        	{
-            
-        	} 
-        	else if (!isSomethingElse) 
-        	{
-            
-        	} 
-        	else 
-        	{
-            
-        	}
-    	}
-	}
+        if (isSomething) 
+        {
+        
+        } 
+        else if (!isSomethingElse) 
+        {
+        
+        } 
+        else 
+        {
+        
+        }
+    }
+}
+```
 
 And instead, do this:
 
+```java
+class SomeClass {
+    private void someFunction() {
+        if (isSomething) {
+        
+        } else if (!isSomethingElse) {
+        
+        } else {
+        
+        }
+    }
+}
+```
 
-	class SomeClass {
-    	private void someFunction() {
-        	if (isSomething) {
-            
-        	} else if (!isSomethingElse) {
-            
-        	} else {
-            
-        	}
-    	}
-	}
-	
 Not only is the extra line for the space not really necessary, but it makes blocks easier to follow when reading the code.
 
 ####2.2.9.2 Inline if-clauses
 
 Sometimes it makes sense to use a single line for if statements. For example:
 
-    if (user == null) return false;
+```java
+if (user == null) return false;
+```
 
 However, it only works for simple operations. Something like this would be better suited with braces:
 
-
-    if (user == null) throw new IllegalArgumentExeption("Oops, user object is required.");
+```java
+if (user == null) throw new IllegalArgumentExeption("Oops, user object is required.");
+```
     
 ####2.2.9.3 Nested if-conditions 
 
@@ -464,19 +494,21 @@ Where possible, if-conditions should be combined to avoid over-complicated nesti
 
 Do:
 
+```java
+if (userSignedIn && userId != null) {
 
-    if (userSignedIn && userId != null) {
-    
-    }
+}
+```
 
 Try to avoid:
 
-
-    if (userSignedIn) {
-        if (userId != null) {
-        
-        }
+```java
+if (userSignedIn) {
+    if (userId != null) {
+    
     }
+}
+```
     
 This makes statements easier to read and removes the unnecessary extra lines from the nested clauses.
 
@@ -486,17 +518,19 @@ Where appropriate, ternary operators can be used to simplify operations.
 
 For example, this is easy to read:
 
-
-    userStatusImage = signedIn ? R.drawable.ic_tick : R.drawable.ic_cross;
+```java
+userStatusImage = signedIn ? R.drawable.ic_tick : R.drawable.ic_cross;
+```
 
 and takes up far fewer lines of code than this:
 
-
-    if (signedIn) {
-        userStatusImage = R.drawable.ic_tick;
-    } else {
-        userStatusImage = R.drawable.ic_cross;
-    }
+```java
+if (signedIn) {
+    userStatusImage = R.drawable.ic_tick;
+} else {
+    userStatusImage = R.drawable.ic_cross;
+}
+```
 
 **Note:** There are some times when ternary operators should not be used. If the if-clause logic is complex or a large number of characters then a standard brace style should be used.
 
@@ -516,35 +550,36 @@ More information about annotation guidelines can be found here.
 
 Annotations should always be used where possible. For example, using the @Nullable annotation should be used in cases where a field could be expected as null. For example:
 
+```java
+@Nullable TextView userNameText;
 
-    @Nullable TextView userNameText;
-    
-    private void getName(@Nullable String name) { }
+private void getName(@Nullable String name) { }
+```
 
 ####2.2.10.2 Annotation style
 
 Annotations that are applied to a method or class should always be defined in the declaration, with only one per line:
 
+```java
+@Annotation
+@AnotherAnnotation
+public class SomeClass {
 
-    @Annotation
-    @AnotherAnnotation
-    public class SomeClass {
-    
-      @SomeAnotation
-      public String getMeAString() {
-      
-      }
-      
-    }
+  @SomeAnotation
+  public String getMeAString() {
+  
+  }  
+}
+```
 
 When using the annotations on fields, you should ensure that the annotation remains on the same line whilst there is room. For example:
 
+```java
+@Bind(R.id.layout_coordinator) CoordinatorLayout coordinatorLayout;
 
-    @Bind(R.id.layout_coordinator) CoordinatorLayout coordinatorLayout;
 
-
-    @Inject MainPresenter mainPresenter;
-    
+@Inject MainPresenter mainPresenter;
+```
     
 We do this as it makes the statement easier to read. For example, the statement '@Inject SomeComponent mSomeName' reads as 'inject this component with this name'.
 
@@ -590,15 +625,17 @@ Logging should be used to log useful error messages and/or other information tha
 
 We can set the `Tag` for the log as a `static final` field at the top of the class, for example:
 
-
-    private static final String TAG = MyActivity.class.getName();
+```java
+private static final String TAG = MyActivity.class.getName();
+```
 
 All verbose and debug logs must be disabled on release builds. On the other hand - information, warning and error logs should only be kept enabled if deemed necessary.
 
-
-    if (BuildConfig.DEBUG) {
-        Log.d(TAG, "Here's a log message");
-    }
+```java
+if (BuildConfig.DEBUG) {
+    Log.d(TAG, "Here's a log message");
+}
+```
 
 **Note:** Timber is the preferred logging method to be used. It handles the tagging for us, which saves us keeping a reference to a TAG.
 
@@ -614,25 +651,26 @@ Any fields declared at the top of a class file should be ordered in the followin
 6. public global variables
 
 For example:
+```java
+public static enum {
+    ENUM_ONE, ENUM_TWO
+}
 
-	public static enum {
-		ENUM_ONE, ENUM_TWO
-	}
+public static final String KEY_NAME = "KEY_NAME";
+public static final int COUNT_USER = 0;
 
-	public static final String KEY_NAME = "KEY_NAME";
-	public static final int COUNT_USER = 0;
-	
-	@Inject SomeAdapter someAdapter;
-	
-	@BindView(R.id.text_name) TextView nameText;
-	@BindView(R.id.image_photo) ImageView photoImage;
-	
-	private int userCount;
-	private String errorMessage;
-	
-	public int someCount;
-	public String someString;
-	
+@Inject SomeAdapter someAdapter;
+
+@BindView(R.id.text_name) TextView nameText;
+@BindView(R.id.image_photo) ImageView photoImage;
+
+private int userCount;
+private String errorMessage;
+
+public int someCount;
+public String someString;
+```
+    
 Using this ordering convention helps to keep field declarations grouped, which increases both the locating of and readability of said fields.
 
 ####2.2.16 Class member ordering
@@ -651,66 +689,69 @@ To improve code readability, it’s important to organise class members in a log
 
 For example:
 
+```java
+public class MainActivity extends Activity {
 
-    public class MainActivity extends Activity {
+    private int count;
     
-        private int count;
-        
-        public static newInstance() { }
-        
-        @Override
-        public void onCreate() { }
-        
-        public setUsername() { }
+    public static newInstance() { }
     
-        private void setupUsername() { }
+    @Override
+    public void onCreate() { }
     
-        static class AnInnerClass { }
-        
-        interface SomeInterface { }
-        
-    }
+    public setUsername() { }
+
+    private void setupUsername() { }
+
+    static class AnInnerClass { }
+    
+    interface SomeInterface { }
+    
+}
+```
 
 Any lifecycle methods used in Android framework classes should be ordered in the corresponding lifecycle order. For example:
 
+```java
+public class MainActivity extends Activity {
 
-    public class MainActivity extends Activity {
+    // Field and constructors
+
+    @Override
+    public void onCreate() { }
     
-        // Field and constructors
+    @Override
+    public void onStart() { }
+
+    @Override
+    public void onResume() { }
+
+    @Override
+    public void onPause() { }
     
-        @Override
-        public void onCreate() { }
-        
-        @Override
-        public void onStart() { }
+    @Override
+    public void onStop() { }
     
-        @Override
-        public void onResume() { }
+    @Override
+    public void onRestart() { }
+
+    @Override
+    public void onDestroy() { }
     
-        @Override
-        public void onPause() { }
-        
-        @Override
-        public void onStop() { }
-        
-        @Override
-        public void onRestart() { }
-    
-        @Override
-        public void onDestroy() { }
-        
-        // public methods, private methods, inner classes and interfaces
-    
-    }
+    // public methods, private methods, inner classes and interfaces
+
+}
+```
 
 ####2.2.17 Method parameter ordering
 
 When defining methods, parameters should be ordered to the following convention:
 
-    public Post loadPost(Context context, int postId);
+```java
+public Post loadPost(Context context, int postId);
 
-
-    public void loadPost(Context context, int postId, Callback callback);
+public void loadPost(Context context, int postId, Callback callback);
+```
 
 **Context** parameters always go first and **Callback** parameters always go last.
 
@@ -726,16 +767,19 @@ Enums should only be used where actually required. If another method is possible
 
 Instead of this:
 
-
-    public enum SomeEnum {
-        ONE, TWO, THREE
-    }
+```java
+public enum SomeEnum {
+    ONE, TWO, THREE
+}
+```
 
 Do this:
 
-    private static final int VALUE_ONE = 1;
-    private static final int VALUE_TWO = 2;
-    private static final int VALUE_THREE = 3;
+```java
+private static final int VALUE_ONE = 1;
+private static final int VALUE_TWO = 2;
+private static final int VALUE_THREE = 3;
+```
     
 ####2.2.20 Arguments in fragments and activities
 
@@ -745,35 +789,40 @@ When we pass data using an Intent or Bundle, the keys for the values must use th
 
 Passing data to an activity must be done using a reference to a KEY, as defined as below:
 
-
-    private static final String KEY_NAME = "com.your.package.name.to.activity.KEY_NAME";
+```java
+private static final String KEY_NAME = "com.your.package.name.to.activity.KEY_NAME";
+```
 
 **Fragment**
 
 Passing data to a fragment must be done using a reference to an EXTRA, as defined as below:
 
-
-    private static final String EXTRA_NAME = "EXTRA_NAME";
+```java
+private static final String EXTRA_NAME = "EXTRA_NAME";
+```
 
 When creating new instances of a fragment or activity that involves passing data, we should provide a static method to retrieve the new instance, passing the data as method parameters. For example:
 
 **Activity**
 
-    public static Intent getStartIntent(Context context, Post post) {
-        Intent intent = new Intent(context, CurrentActivity.class);
-        intent.putParcelableExtra(EXTRA_POST, post);
-        return intent;
-    }
+```java
+public static Intent getStartIntent(Context context, Post post) {
+    Intent intent = new Intent(context, CurrentActivity.class);
+    intent.putParcelableExtra(EXTRA_POST, post);
+    return intent;
+}
+```
 
 **Fragment**
-
-    public static PostFragment newInstance(Post post) {
-        PostFragment fragment = new PostFragment();
-        Bundle args = new Bundle();
-        args.putParcelable(ARGUMENT_POST, post);
-        fragment.setArguments(args)
-        return fragment;
-    }
+```java
+public static PostFragment newInstance(Post post) {
+    PostFragment fragment = new PostFragment();
+    Bundle args = new Bundle();
+    args.putParcelable(ARGUMENT_POST, post);
+    fragment.setArguments(args)
+    return fragment;
+}
+```
     
 ####2.2.21 Line Length Limit
 
@@ -794,15 +843,17 @@ When it comes to line-wraps, there’s a few situations where we should be consi
 
 When we need to break a line at an operator, we break the line before the operator:
 
-
-    int count = countOne + countTwo - countThree + countFour * countFive - countSix
-            + countOnANewLineBecauseItsTooLong;
+```java
+int count = countOne + countTwo - countThree + countFour * countFive - countSix
+        + countOnANewLineBecauseItsTooLong;
+```
 
 If desirable, you can always break after the `=` sign:
 
-
-    int count = 
-            countOne + countTwo - countThree + countFour * countFive + countSix;
+```java
+int count = 
+        countOne + countTwo - countThree + countFour * countFive + countSix;
+```
 
 **Method Chaining**
 
@@ -810,34 +861,37 @@ When it comes to method chaining, each method call should be on a new line.
 
 Don’t do this:
 
-
-    Picasso.with(context).load("someUrl").into(imageView);
+```java
+Picasso.with(context).load("someUrl").into(imageView);
+```
 
 Instead, do this:
 
-
-    Picasso.with(context)
-            .load("someUrl")
-            .into(imageView);
+```java
+Picasso.with(context)
+        .load("someUrl")
+        .into(imageView);
+```
 
 **Long Parameters**
 
 In the case that a method contains long parameters, we should line break where appropriate. For example when declaring a method we should break after the last comma of the parameter that fits:
 
-
-    private void someMethod(Context context, String someLongStringName, String text, 
-                                long thisIsALong, String anotherString) {               
-    }             
+```java
+private void someMethod(Context context, String someLongStringName, String text, 
+                            long thisIsALong, String anotherString) {               
+}             
+```
 
 And when calling that method we should break after the comma of each parameter:
 
-
-    someMethod(context,
-            "thisIsSomeLongTextItsQuiteLongIsntIt",
-            "someText",
-            01223892365463456,
-            "thisIsSomeLongTextItsQuiteLongIsntIt");
-            
+```java
+someMethod(context,
+        "thisIsSomeLongTextItsQuiteLongIsntIt",
+        "someText",
+        01223892365463456,
+        "thisIsSomeLongTextItsQuiteLongIsntIt");
+```     
             
 ####2.2.22 Method spacing
 
@@ -845,35 +899,39 @@ There only needs to be a single line space between methods in a class, for examp
 
 Do this:
 
+```java
+public String getUserName() {
+    // Code
+}
 
-    public String getUserName() {
-        // Code
-    }
-    
-    public void setUserName(String name) {
-        // Code
-    }
-    
-    public boolean isUserSignedIn() {
-        // Code
-    }
+public void setUserName(String name) {
+    // Code
+}
+
+public boolean isUserSignedIn() {
+    // Code
+}
+
+```
 
 Not this:
 
+```java
+public String getUserName() {
+    // Code
+}
 
-    public String getUserName() {
-        // Code
-    }
-    
-    
-    public void setUserName(String name) {
-        // Code
-    }
-    
-    
-    public boolean isUserSignedIn() {
-        // Code
-    }
+
+public void setUserName(String name) {
+    // Code
+}
+
+
+public boolean isUserSignedIn() {
+    // Code
+}
+
+```
     
 ###2.2.23 Comments
 
@@ -919,29 +977,31 @@ Don’t leave author comments, these aren’t useful and provide no real meaning
 
 If creating ‘sections’ for code, this should be done using the following approach, like this:
 
+```java
+public void method() { }
 
-    public void method() { }
-    
-    public void someOtherMethod() { }
-    
-    /********* Mvp Method Implementations  ********/
-    
-    public void anotherMethod() { }
-    
-    /********* Helper Methods  ********/
-    
-    public void someMethod() { }
+public void someOtherMethod() { }
+
+/********* Mvp Method Implementations  ********/
+
+public void anotherMethod() { }
+
+/********* Helper Methods  ********/
+
+public void someMethod() { }
+```
 
 Not like this:
 
+```java
+public void method() { }
 
-    public void method() { }
-    
-    public void someOtherMethod() { }
-    
-    // Mvp Method Implementations
-    
-    public void anotherMethod() { }
+public void someOtherMethod() { }
+
+// Mvp Method Implementations
+
+public void anotherMethod() { }
+```
 
 This makes sectioned methods easier to located in a class.
 
@@ -949,13 +1009,14 @@ This makes sectioned methods easier to located in a class.
 
 String resources defined within the string.xml file should be section by feature, for example:
 
+```xml
+// User Profile Activity
+<string name="button_save">Save</string>
+<string name="button_cancel">Cancel</string>
 
-    // User Profile Activity
-    <string name="button_save">Save</string>
-    <string name="button_cancel">Cancel</string>
-    
-    // Settings Activity
-    <string name="message_instructions">...</string>
+// Settings Activity
+<string name="message_instructions">...</string>
+```
     
 Not only does this help keep the strings file tidy, but it makes it easier to find strings when they need altering.
     
@@ -963,20 +1024,21 @@ Not only does this help keep the strings file tidy, but it makes it easier to fi
 
 When chaining Rx operations, every operator should be on a new line, breaking the line before the period `.` . For example:
 
-
-    return mDataManager.getPost()
-                .concatMap(new Func1<Post, Observable<? extends Post>>() {
-                    @Override
-                     public Observable<? extends Post> call(Post post) {
-                         return mRetrofitService.getPost(post.id);
-                     }
-                })
-                .retry(new Func2<Integer, Throwable, Boolean>() {
-                     @Override
-                     public Boolean call(Integer numRetries, Throwable throwable) {
-                         return throwable instanceof RetrofitError;
-                     }
-                });
+```java
+return mDataManager.getPost()
+            .concatMap(new Func1<Post, Observable<? extends Post>>() {
+                @Override
+                 public Observable<? extends Post> call(Post post) {
+                     return mRetrofitService.getPost(post.id);
+                 }
+            })
+            .retry(new Func2<Integer, Throwable, Boolean>() {
+                 @Override
+                 public Boolean call(Integer numRetries, Throwable throwable) {
+                     return throwable instanceof RetrofitError;
+                 }
+            });
+```
                 
 This makes it easier to understand the flow of operation within an Rx chain of calls.
                 
@@ -986,19 +1048,20 @@ This makes it easier to understand the flow of operation within an Rx chain of c
 
 Where possible, make use of Butterknife listener bindings. For example, when listening for a click event instead of doing this:
 
-
-    mSubmitButton.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-            // Some code here...
-        }
-      };
+```java
+mSubmitButton.setOnClickListener(new View.OnClickListener() {
+    public void onClick(View v) {
+        // Some code here...
+    }
+};
+```
 
 Do this:
 
-
-    @OnClick(R.id.button_submit)
-    public void onSubmitButtonClick() { }
-    
+```java
+@OnClick(R.id.button_submit)
+public void onSubmitButtonClick() { }
+```
 
 ## 2.3 XML Style Rules
 
@@ -1008,21 +1071,22 @@ When a View in an XML layout does not have any child views, self-closing tags sh
 
 Do:
 
-
-    <ImageView
-        android:id="@+id/image_user"
-        android:layout_width="90dp"
-        android:layout_height="90dp" />
+```xml
+<ImageView
+    android:id="@+id/image_user"
+    android:layout_width="90dp"
+    android:layout_height="90dp" />
+```
 
 Don’t:
 
-
-    <ImageView
-        android:id="@+id/image_user"
-        android:layout_width="90dp"
-        android:layout_height="90dp">
-    </ImageView>
-    
+```xml
+<ImageView
+    android:id="@+id/image_user"
+    android:layout_width="90dp"
+    android:layout_height="90dp">
+</ImageView>
+```
     
 ### 2.3.2 Resource naming
 
@@ -1048,12 +1112,12 @@ All IDs should be prefixed using the name of the element that they have been dec
 
 For example:
 
-
-    <TextView
-        android:id="@+id/text_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+```xml
+<TextView
+    android:id="@+id/text_username"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+```
 
 Views that typically are only one per layout, such as a toolbar, can simply be given the id of it's view type. E.g.```toolbar```.
 
@@ -1108,17 +1172,19 @@ Ordering attributes not only looks tidy but it helps to make it quicker when loo
 
 For example:
 
-    <Button
-        android:id="@id/button_accept"
-        style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:padding="16dp"
-        android:text="@string/button_skip_sign_in"
-        android:textColor="@color/bluish_gray" />
-        
+```xml
+<Button
+    android:id="@id/button_accept"
+    style="@style/ButtonStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentStart="true"
+    android:padding="16dp"
+    android:text="@string/button_skip_sign_in"
+    android:textColor="@color/bluish_gray" />
+```
+
 Note: This formatting can be carried out by using the format feature in android studio - 
 
 `cmd + shift + L` 
@@ -1140,15 +1206,17 @@ Any Unit Test classes should be written to match the name of the class that the 
 
 All Test methods should be annotated with the `@Test` annotation, the methods should be named using the following template:
 
-
-    @Test
-    public void methodNamePreconditionExpectedResult() { }
+```java
+@Test
+public void methodNamePreconditionExpectedResult() { }
+```
 
 So for example, if we want to check that the signUp() method with an invalid email address fails, the test would look like:
 
-
-    @Test
-    public void signUpWithInvalidEmailFails() { }
+```java
+@Test
+public void signUpWithInvalidEmailFails() { }
+```
 
 Tests should focus on testing only what the method name entitles, if there’s extra conditions being tested in your Test method then this should be moved to it’s own individual test.
 
@@ -1171,10 +1239,11 @@ Each Espresso test class generally targets an Activity, so the name given to it 
 
 When using the Espresso API, methods should be chained on new lines to make the statements more readable, for example:
 
-
-    onView(withId(R.id.text_title))
-            .perform(scrollTo())
-            .check(matches(isDisplayed()))
+```java
+onView(withId(R.id.text_title))
+        .perform(scrollTo())
+        .check(matches(isDisplayed()));
+```
             
 Chaining calls in this style not only helps us stick to less than 100 characters per line but it also makes it easy to read the chain of events taking place in espresso tests. 
             
@@ -1186,47 +1255,50 @@ Chaining calls in this style not only helps us stick to less than 100 characters
 
 Where applicable, versioning that is shared across multiple dependencies should be defined as a variable within the dependencies scope. For example:
 
+```groovy
+final SUPPORT_LIBRARY_VERSION = '23.4.0'
 
-    final SUPPORT_LIBRARY_VERSION = '23.4.0'
-    
-    compile "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
-    
+compile "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
+compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
+compile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
+compile "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
+```
+
 This makes it easy to update dependencies in the future as we only need to change the version number once for multiple dependencies.
 
 ### 3.1.2 Grouping
 
 Where applicable, dependencies should be grouped by package name, with spaces in-between the groups. For example:
 
+```groovy
+compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
+compile "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
 
-    compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
-    
-    compile 'io.reactivex:rxandroid:1.2.0'
-    compile 'io.reactivex:rxjava:1.1.5'
-    
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.jakewharton.timber:timber:4.1.2'
-    
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+compile 'io.reactivex:rxandroid:1.2.0'
+compile 'io.reactivex:rxjava:1.1.5'
 
+compile 'com.jakewharton:butterknife:7.0.1'
+compile 'com.jakewharton.timber:timber:4.1.2'
+
+compile 'com.github.bumptech.glide:glide:3.7.0'
+
+```
 
 `compile` , `testCompile` and `androidTestCompile`  dependencies should also be grouped into their corresponding section. For example:
 
+```groovy
+// App Dependencies
+compile "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
+compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
 
-    // App Dependencies
-    compile "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
-    
-    // Instrumentation test dependencies
-    androidTestCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
-    
-    // Unit tests dependencies
-    testCompile 'org.robolectric:robolectric:3.0'
+// Instrumentation test dependencies
+androidTestCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+
+// Unit tests dependencies
+testCompile 'org.robolectric:robolectric:3.0'
+```
 
 Both of these approaches makes it easy to locate specific dependencies when required as it keeps dependency declarations both clean and tidy 🙌
 
@@ -1235,5 +1307,6 @@ Both of these approaches makes it easy to locate specific dependencies when requ
 
 Where dependencies are only used individually for application or test purposes, be sure to only compile them using `compile` , `testCompile` or `androidTestCompile` . For example, where the robolectric dependency is only required for unit tests, it should be added using:
 
-
-    testCompile 'org.robolectric:robolectric:3.0' 
+```groovy
+testCompile 'org.robolectric:robolectric:3.0' 
+```
