@@ -1,17 +1,13 @@
 #Android Uygulama Geliştirme Prensipleri	
 ---------------------------
 
-Bu uygulamanın amacı Android uygulama geliştirme prensiplerini belirlemektir. 
-The aim of this document is to define project guidelines. These should be followed throughout the Android project in order to help us to keep our code base clean and consistent. A lot of this will be enforced by code quality checks through Jenkins, but it's important to be mindful of the things that may not be picked up 🙂
+Bu uygulamanın amacı Android uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek temiz ve istikrarlı kod yazımında bize yardımcı olacaktır.
 
+##1. Uygulama Prensipleri
 
-##1. Project Guidelines
+###1.1 Proje Yapısı
 
-###1.1 Project Structure
-
-When contributing work, the project should maintain the following structure:
-
-
+Uygulama geliştrken, proje yapısı ağağıdaki gibi olmadır. :
 
 	src/AndroidTest
 	src/Test
@@ -19,30 +15,26 @@ When contributing work, the project should maintain the following structure:
 	src/main
 	
 
-**AndroidTest** - Directory containing functional tests    
-**Test** - Directory containing unit tests  
-**CommonTest** - Directory containing shared test code for AndroidTest & Test  
-**main** - Directory containing application code
+**AndroidTest** - Fonksiyonel testleri içeren klasör.    
+**Test** - Unit testleri içeren klasör.  
+**CommonTest** - Paylaşılan AndroidTest & Test kodlarının bulunduğu klasör. 
+**main** - Uygulamanın kodlarını içeren klasör. 
 
-The structure of the project should remain as defined above whenever you are modifying or adding new features. 
+Uygulamanın genel yapısı herhangi bir değişiklikte ya da yeni bir özellik eklendiğinde yukarıda belirlenmiş şekilde kalmalıdır. Bu yapıyı kullanmanın avantajı test ile ilişkili olan kodların ayrı olmasıdır. 
 
-Using this structure allows us to keep the application code seperated from any test-related code. The CommonTest directory allows us to share classes between the functional and unit tests, such as mock model creation and dagger test configuration classes.
+###1.2 Dosya İsimlendirme
 
+####1.2.1 Class dosyaları
 
-###1.2 File Naming
-
-####1.2.1 Class Files
-
-Any classes that you define should be named using UpperCamelCase, for example:
+Her class dosyası BüyükKucuk şeklinde tanımlanmaldır. Örnek olarak;
 
 	AndroidActivity, NetworkHelper, UserFragment, PerActivity
-	
-	
-Any classes extending an Android framework component should **always** end with the component name. For example:
+
+Android kütüphanesinden extend edilmiş bileşen **her zaman** o bileşenin ismi ile bitmelidir. Örnek olarak;
 
 	UserFragment, SignUpActivity, RateAppDialog, PushNotificationServer, NumberView
 
-We use UpperCamelCase as this helps to seperate the words used to create the name, making it easier to read. Naming classes to end with the framework component makes it super clear as to what the class is used for. For example, if you're looking to make changes to the RegistrationDialog then this naming convention makes it really easy to locate that class.
+BuyukKucuk harf şeklinde kullanılan class isimleri okunabilirlik açısından kolaylık sağlamaktadır. Ayrıca class'ları bileşenlerin isimlerine göre isimlendirme de hangi class'ın ne için kullanıldığı hakkında bize bilgi vermektedir. Örnek olarak RegistrationDialog bize kayıt ile ilgili işlemin bu dialog'da yapıldığını göstermektedir. 
 	
 ####1.2.1 Resource Files
 
