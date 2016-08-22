@@ -28,11 +28,11 @@ Uygulamanın genel yapısı herhangi bir değişiklikte ya da yeni bir özellik 
 
 Her class dosyası BüyükKucuk şeklinde tanımlanmaldır. Örnek olarak;
 
-	Android**Activity**, Network**Helper**, User**Fragment**, Per**Activity**
+	AndroidActivity, NetworkHelper, UserFragment, PerActivity
 
 Android kütüphanesinden extend edilmiş bileşen **her zaman** o bileşenin ismi ile bitmelidir. Örnek olarak;
 
-	User**Fragment**, SignUp**Activity**, RateApp**Dialog**, PushNotification**Server**, Number**View**
+	UserFragment, SignUpActivity, RateAppDialog, PushNotificationServer, NumberView
 
 BuyukKucuk harf şeklinde kullanılan class isimleri okunabilirlik açısından kolaylık sağlamaktadır. Ayrıca class'ları bileşenlerin isimlerine göre isimlendirme de hangi class'ın ne için kullanıldığı hakkında bize bilgi vermektedir. Örnek olarak RegistrationDialog bize kayıt ile ilgili işlemin bu dialog'da yapıldığını göstermektedir. 
 	
