@@ -1,6 +1,7 @@
-#Android Project Guidelines
+#Android Uygulama Geliştirme Prensipleri	
 ---------------------------
 
+Bu uygulamanın amacı Android uygulama geliştirme prensiplerini belirlemektir. 
 The aim of this document is to define project guidelines. These should be followed throughout the Android project in order to help us to keep our code base clean and consistent. A lot of this will be enforced by code quality checks through Jenkins, but it's important to be mindful of the things that may not be picked up 🙂
 
 
