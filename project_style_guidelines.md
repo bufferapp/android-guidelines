@@ -134,9 +134,9 @@ Avoid not handling exceptions in the correct manner. For example:
 This gives no information to both the developer and the user, making it harder to debug and could also leave the user confused if something goes wrong. When catching an exception, we should also always log the error to the console for debugging purposes and if necessary alert the user of the issue. For example:
 
 
-	public void setCount(String count) {
+	public void setCount(String pCount) {
     	try {
-        	count = Integer.parseInt(id);
+        	count = Integer.parseInt(pCount);
     	} catch (NumberFormatException e) {
     		count = 0;
         	Log.e(TAG, "There was an error parsing the count " + e);
@@ -196,7 +196,7 @@ Where exceptions execute the same code, they should be grouped in-order to incre
         	Log.e(TAG, "There was an error opening the custom tab " + e);
     	} catch (SomeOtherException e) {
     		// Show some dialog
-        }
+      }
 	}
 
 You could do this:
@@ -209,7 +209,7 @@ You could do this:
         	Log.e(TAG, "There was an error opening the custom tab " + e);
     	} catch (SomeOtherException e) {
     		// Show some dialog
-        }
+      }
 	}
 
 
@@ -220,7 +220,7 @@ Using try-catch statements improves the readability of the code where the except
 
 #### 2.1.5 Never use Finalizers
 
-*There are no guarantees as to when a finalizer will be called, or even that it will be called at all. In most cases, you can do what you need from a finalizer with good exception handling. If you absolutely need it, define a close() method (or the like) and document exactly when that method needs to be called. See InputStreamfor an example. In this case it is appropriate but not required to print a short log message from the finalizer, as long as it is not expected to flood the logs.* - taken from the Android code style guidelines
+*There are no guarantees as to when a finalizer will be called, or even that it will be called at all. In most cases, you can do what you need from a finalizer with good exception handling. If you absolutely need it, define a close() method (or the like) and document exactly when that method needs to be called. See InputStream for an example. In this case it is appropriate but not required to print a short log message from the finalizer, as long as it is not expected to flood the logs.* - taken from the Android code style guidelines
 
 
 
@@ -233,7 +233,7 @@ Don’t do this:
 
     import android.support.v7.widget.*;
 
-Instead, do this 😃
+Instead, do this:
 
 
     import android.support.v7.widget.RecyclerView;
@@ -252,20 +252,20 @@ All fields should be declared at the top of the file, following these rules:
 
 - Private, non-static field names should not start with m. This is right:
 
-    userSignedIn, userNameText, acceptButton
+	`userSignedIn`, `userNameText`, `acceptButton`
 
 Not this:
 
-    mUserSignedIn, mUserNameText, mAcceptButton
+`mUserSignedIn`, `mUserNameText`, `mAcceptButton`
 
 
 - Private, static field names do not need to start with an s. This is right:
 
-    someStaticField, userNameText
+	`someStaticField`, `userNameText`
 
 Not this:
 
-	sSomeStaticField, sUserNameText
+`sSomeStaticField`, `sUserNameText`
 
 
 - All other fields also start with a lower case letter.
@@ -504,7 +504,7 @@ and takes up far fewer lines of code than this:
 
 #### 2.2.10.1 Annotation practices
 
-Taken from  the Android code style guide:
+Taken from the Android code style guide:
 
 **@Override:** The @Override annotation must be used whenever a method overrides the declaration or implementation from a super-class. For example, if you use the @inheritdocs Javadoc tag, and derive from a class (not an interface), you must also annotate that the method @Overrides the parent class's method.
 
@@ -600,7 +600,7 @@ All verbose and debug logs must be disabled on release builds. On the other hand
         Log.d(TAG, "Here's a log message");
     }
 
-**Note:** Timber is the preferred logging method to be used. It handles the tagging for us, which saves us keeping a reference to a TAG.
+**Note:** [Timber](https://github.com/JakeWharton/timber) is the preferred logging method to be used. It handles the tagging for us, which saves us keeping a reference to a TAG.
 
 #### 2.2.15 Field Ordering
 
@@ -943,7 +943,7 @@ Not like this:
 
     public void anotherMethod() { }
 
-This makes sectioned methods easier to located in a class.
+This makes sectioned methods easier to be located in a class.
 
 #### 2.2.24.2 Strings file
 
@@ -961,7 +961,7 @@ Not only does this help keep the strings file tidy, but it makes it easier to fi
 
 #### 2.2.24.3 RxJava chaining
 
-When chaining Rx operations, every operator should be on a new line, breaking the line before the period `.` . For example:
+When chaining Rx operations, every operator should be on a new line, breaking the line before the period `.`. For example:
 
 
     return mDataManager.getPost()
@@ -1002,7 +1002,7 @@ Do this:
 
 ## 2.3 XML Style Rules
 
-### 2.3.1 Use self=-closing tags
+### 2.3.1 Use self-closing tags
 
 When a View in an XML layout does not have any child views, self-closing tags should be used.
 
@@ -1029,7 +1029,7 @@ Don’t:
 All resource names and IDs should be written using lowercase and underscores, for example:
 
 
-    text_username, activity_main, fragment_user, error_message_network_connection
+`text_username`, `activity_main`, `fragment_user`, `error_message_network_connection`
 
 The main reason for this is consistency, it also makes it easier to search for views within layout files when it comes to altering the contents of the file.
 
@@ -1119,7 +1119,7 @@ For example:
         android:text="@string/button_skip_sign_in"
         android:textColor="@color/bluish_gray" />
 
-Note: This formatting can be carried out by using the format feature in android studio -
+Note: This formatting can be carried out by using the format feature in Android Studio -
 
 `cmd + shift + L`
 
