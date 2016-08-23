@@ -3,6 +3,8 @@
 
 Bu uygulamanın amacı Android uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek temiz ve istikrarlı kod yazımında bize yardımcı olacaktır.
 
+Not: Bazı yerlerde İngilizce-Türkçe kullanımında karışıklık olmaktadır. Bunlar kullanılan kelimelerin tam karşılığının olmamasından kaynaklanmaktadır. Örneğin; handle etmek , class dosyaları..
+
 ##1. Uygulama Prensipleri
 
 ###1.1 Proje Yapısı
@@ -101,11 +103,11 @@ Values kısmında bulunan dosyalar çoğul olmalıdır.
 
 ##2. Code Guidelines
 
-###2.1 Java Language Rules
+###2.1 Java Dili Kuralları
 
-####2.1.1 Never ignore exceptions
+####2.1.1 Exceptionları görmezden gelmeyin :)
 
-Avoid not handling exceptions in the correct manner. For example:
+Exceptionları handle etmeden bırakmayınız. 
 
 	public void setUserId(String id) {
     	try {
@@ -113,8 +115,7 @@ Avoid not handling exceptions in the correct manner. For example:
     	} catch (NumberFormatException e) { }
 	}
 
-This gives no information to both the developer and the user, making it harder to debug and could also leave the user confused if something goes wrong. When catching an exception, we should also always log the error to the console for debugging purposes and if necessary alert the user of the issue. For example:
-
+Yukarıdaki yazım tarzı hem kullanıcıya, hem de uygulama geliştiriciye meydana gelen hata ile ilgili bilgi vermemektedir. Bunun yerine ilgili hata ile ilgili bilgi verdiren log yazdırılmalıdır. 
 
 	public void setCount(String count) {
     	try {
@@ -126,17 +127,17 @@ This gives no information to both the developer and the user, making it harder t
     	}
 	}
 
-Here we handle the error appropriately by:
+Hataları şu şekilde handle etmeliyiz. 
 
-- Showing a message to the user notifying them that there has been an error
-- Setting a default value for the variable if possible
-- Throw an appropriate exception
-
-
-####2.1.2 Never catch generic exceptions
+- Kullanıcıya hata meydana geldiğine dair uyarı vermeliyiz. 
+- Hata oluşması durumunda değişkene sabit bir değer vermeliyiz. 
+- Uygun olan exception'u göstermeliyiz. 
 
 
-Catching exceptions generally should not be done:
+####2.1.2 Türü belli olmayan exception'lar 
+
+
+Exception yakalarken aşağıdaki şekilde en genel halini göstermemeliyiz. 
 
 
 	public void openCustomTab(Context context, Uri uri) {
@@ -148,11 +149,12 @@ Catching exceptions generally should not be done:
     	}
 	}
 
-Why?
+Neden?
 
-*Do not do this. In almost all cases it is inappropriate to catch generic Exception or Throwable (preferably not Throwable because it includes Error exceptions). It is very dangerous because it means that Exceptions you never expected (including RuntimeExceptions like ClassCastException) get caught in application-level error handling. It obscures the failure handling properties of your code, meaning if someone adds a new type of Exception in the code you're calling, the compiler won't help you realize you need to handle the error differently. In most cases you shouldn't be handling different types of exception the same way.* - taken from the Android Code Style Guidelines
+Bu şekilde genel haliyle yakalanan exception'lar bize aldığımız hatalar hakkında bilgi vermemektedir. 
 
-Instead, catch the expected exception and handle it accordingly:
+
+Bunun yerine duruma göre exceptionlar yakalanmaladır. 
 
 	public void openCustomTab(Context context, Uri uri) {
     	Intent intent = buildIntent(context, uri);
@@ -164,9 +166,9 @@ Instead, catch the expected exception and handle it accordingly:
 	}
 
 
-####2.1.3 Grouping exceptions
+####2.1.3 Exception'ların gruplanması. 
 
-Where exceptions execute the same code, they should be grouped in-order to increase readability and avoid code duplication. For example, where you may do this:
+Exceptionlar aynı koddan meydana geliyorsa gruplandırılması gerekmektedir. 
 
 	public void openCustomTab(Context context, @Nullable Uri uri) {
     	Intent intent = buildIntent(context, uri);
@@ -181,7 +183,7 @@ Where exceptions execute the same code, they should be grouped in-order to incre
         }
 	}
 
-You could do this:
+Guruplanmış exceptionlar aşağıdaki gibidir. 
 
 	public void openCustomTab(Context context, @Nullable Uri uri) {
     	Intent intent = buildIntent(context, uri);
@@ -195,10 +197,9 @@ You could do this:
 	}
 
 
-####2.1.4 Using try-catch over throw exception
+####2.1.4 Try-catch kulllanımı
 
-Using try-catch statements improves the readability of the code where the exception is taking place. This is because the error is handled where it occurs, making it easier to both debug or make a change to how the error is handled.
-
+Try-catch kullanımı kod okunabilirliğini arttırır. Meydana gelen hata da kolayca handle edilmiş olur. Aynı zamanda debug aşamasını da epey kolaylaştırmış olur. 
 
 ####2.1.5 Never use Finalizers
 
@@ -206,72 +207,66 @@ Using try-catch statements improves the readability of the code where the except
 
 
 
-####2.1.6 Fully qualify imports
+####2.1.6 Bileşenlerin import edilmesi.
 
-When declaring imports, use the full package declaration. For example:
+Bileşenler import edilirken tüm ismi ile import edilmeli. 
 
-Don’t do this:
-
+Bunun yerine:
 
     import android.support.v7.widget.*;
 
-Instead, do this 😃
+Bunu yapın :) 😃
 
 
     import android.support.v7.widget.RecyclerView;
 
 
-####2.1.7 Don't keep unused imports
+####2.1.7 Kullanılmayan importları tutmayın. 
 
-Sometimes removing code from a class can mean that some imports are no longer needed. If this is the case then the corresponding imports should be removed alongside the code.
 
-###2.2 Java Style Rules
+###2.2 Java Kod Stili Kuralları
 
-####2.2.1 Field definition and naming
+####2.2.1 Field tanımlama ve isimlendirme
 
 All fields should be declared at the top of the file, following these rules:
 
-
-- Private, non-static field names should not start with m. This is right:
+- Private, non-static olmayan fieldların isimleri *m* ile başlamamalıdır:
 
     userSignedIn, userNameText, acceptButton
 
-Not this:
+Aşağıdaki kullanım kod okunabilirliğini azaltmaktadır:
 
     mUserSignedIn, mUserNameText, mAcceptButton
 
 
-- Private, static field names do not need to start with an s. This is right:
+- Private, static field isimleri *s* ile başlamamalıdır.:
 
     someStaticField, userNameText
 
-Not this:
+Aşağıdaki kullanım da okunabilirliği azaltmaktadır:
 
 	sSomeStaticField, sUserNameText
 
 
-- All other fields also start with a lower case letter.
+- Diğer tüm fieldlar küçük harfle başlamalıdır.
 
 
     int numOfChildren; 
     String username;
 
 
-- Static final fields (known as constants) are ALL_CAPS_WITH_UNDERSCORES.
-
+- Static final değişkenler BUYUK_HARFLE_VE_ALTYAZI ile yazılmalıdır. .
 
     private static final int PAGE_COUNT = 0;
 
-Field names that do not reveal intention should not be used. For example,
+Değişken isimleri kullanıma göre isimlendirilmelidir. 
 
-    int e; //number of elements in the list
+    int e; //listedeki eleman sayısı
 
-why not just give the field a meaningful name in the first place, rather than leaving a comment!
+Yukarıdaki kullanım yerine, değişkenin ismini kullanım amacına göre vermemiz gerekmekdir. 
 
-    int numberOfElements;
+    int elemanSayisi;
 
-That's much better!
-    
 
 ####2.2.1.2 View Field Naming
 
