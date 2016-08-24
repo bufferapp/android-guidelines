@@ -363,7 +363,7 @@ Any acronyms for class names, variable names etc should be treated as words - th
 | Do              | Don't           |
 |-----------------|-----------------|
 | setUserId       | setUserID       |
-| String Uri      | String URI      |
+| String uri      | String URI      |
 | int id          | int ID          |
 | parseHtml       | parseHTML       |
 | generateXmlFile | generateXMLFile |
