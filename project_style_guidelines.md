@@ -228,7 +228,7 @@ Bunu yapın :) 😃
 
 ####2.2.1 Field tanımlama ve isimlendirme
 
-All fields should be declared at the top of the file, following these rules:
+Tüm field'lar sayfanın en üstünde ve aşağıdaki kurallara göre tanımlanmalıdır.
 
 - Private, non-static olmayan fieldların isimleri *m* ile başlamamalıdır:
 
@@ -268,57 +268,50 @@ Yukarıdaki kullanım yerine, değişkenin ismini kullanım amacına göre verme
     int elemanSayisi;
 
 
-####2.2.1.2 View Field Naming
+####2.2.1.2 View Alanalrının İsimlendirmesi
 
-When naming fields that reference views, the name of the view should be the last word in the name. For example:
+View bileşenlerinin isimlendirirken, bileşenlerinin isimlerine göre adlandırılır. 
 
-| View           | Name              |
-|----------------|-------------------|
-| TextView       | usernameView      |
-| Button         | acceptLoginView   |
-| ImageView      | profileAvatarView |
-| RelativeLayout | profileLayout     |
+| View           | Name               |
+|----------------|--------------------|
+| TextView       | usernameText       |
+| Button         | acceptLoginButton  |
+| ImageView      | profileAvatarImage |
+| RelativeLayout | profileLayout      |
 
-We name views in this way so that we can easily identify what the field corresponds to. For example, having a field named **user** is extremely ambiguous - giving it the name usernameView, userAvatarView or userProfieLayout helps to make it clear  exactly what view the field corresponds with.
+Yukarıdaki kullanım ile birlikte hangi değişkenimizin hangi bileşenden meydana geldiğini anlayabiliriz. 
 
-Previously, the names for views often ended in the view type (e.g acceptLoginButton) but quite often views change and it's easy to forgot to go back to java classes and update variable names.
+####2.2.2 Container tiplerini isimlendirmede kullanmamalıyız
 
-####2.2.2 Avoid naming with container types
-
-Leading on from the above, we should also avoid the use of container type names when creating variables for collections. For example, say we have an arraylist containing a list of userIds:
-
-Do:
+Bunu yapın:
 
     List<String> userIds = new ArrayList<>();
 
-Don't:
+Bunu yapmayın:
 
     List<String> userIdList = new ArrayList<>();
     
-If and when container names change in the future, the naming of these can often get forgotten about - and just like view naming, it's not entirely necessary. Correct naming of the container itself should provide enough information for what it is.
 
+####2.2.3 Aynı isimlendirme yapmaktan kaçının
 
-####2.2.3 Avoid similar naming
-
-Naming variables, method and / or classes with similar names can make it confusing for other developers reading over your code. For example:
+Bir değişkeni, metodu isimlendirirken aynı isimleri kullanmayınız. 
 
 	hasUserSelectedSingleProfilePreviously
 
 	hasUserSelectedSignedProfilePreviously
 	
-Distinguishing the difference between these at a first glance can be hard to understand what is what. Naming these in a clearer way can make it easier for developers to navigate the fields in your code.
 
 ####2.2.4 Number series naming
 
-When Andorid Studio auto-generates code for us, it's easy to leave things as they are - even when it generate horribly named parameters! For example, this isn't very nice:
+Method oluştururken kullandığımız parametreleri amaçlarına göre isimlendirmeliyiz. 
 
 	public void doSomething(String s1, String s2, String s3)
 	
-It's hard to understand what these parameters do without reading the code. Instead:
+Yukarıdaki kullanımda s1, s2 ve s3'ün ne olduğu belli değil. Bunun yerine:
 
 	public void doSomething(String userName, String userEmail, String userId)
 
-That makes it much easier to understand! Now we'll be able to read the code following the parameter with a much clearer understanding 🙂
+Parametreleri değişkenlere göre isimlendirmeliyiz. 
 
 ####2.2.5 Pronouncable names
 
