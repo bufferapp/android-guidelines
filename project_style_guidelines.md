@@ -9,7 +9,7 @@ Not: Bazı yerlerde İngilizce-Türkçe kullanımında karışıklık olmaktadı
 
 ###1.1 Proje Yapısı
 
-Uygulama geliştrken, proje yapısı ağağıdaki gibi olmadır. :
+Uygulama geliştirirken, proje yapısı ağağıdaki gibi olmadır. :
 
 	src/AndroidTest
 	src/Test
@@ -28,19 +28,19 @@ Uygulamanın genel yapısı herhangi bir değişiklikte ya da yeni bir özellik 
 
 ####1.2.1 Class dosyaları
 
-Her class dosyası BüyükKucuk şeklinde tanımlanmaldır. Örnek olarak;
+Her class dosyası BüyükKüçük şeklinde tanımlanmaldır. Örnek olarak;
 
 	AndroidActivity, NetworkHelper, UserFragment, PerActivity
 
-Android kütüphanesinden extend edilmiş bileşen **her zaman** o bileşenin ismi ile bitmelidir. Örnek olarak;
+Android kütüphanesinden kalıtılmış bileşen **her zaman** hangi sınıftan kalıtılıyorsa o bileşenin ismi ile bitmelidir. Örnek olarak;
 
 	UserFragment, SignUpActivity, RateAppDialog, PushNotificationServer, NumberView
 
-BuyukKucuk harf şeklinde kullanılan class isimleri okunabilirlik açısından kolaylık sağlamaktadır. Ayrıca class'ları bileşenlerin isimlerine göre isimlendirme de hangi class'ın ne için kullanıldığı hakkında bize bilgi vermektedir. Örnek olarak RegistrationDialog bize kayıt ile ilgili işlemin bu dialog'da yapıldığını göstermektedir. 
+BüyükKüçük harf şeklinde kullanılan class isimleri okunabilirlik açısından kolaylık sağlamaktadır. Ayrıca class'ları bileşenlerin isimlerine göre isimlendirme de hangi class'ın ne için kullanıldığı hakkında bize bilgi vermektedir. Örnek olarak RegistrationDialog bize kayıt ile ilgili işlemin bu dialog'da yapıldığını göstermektedir. 
 	
 ####1.2.1 Resource Dosyaları
 
-Resource dosyalarını isimlendirirken küçük harf kullanmalıyız ve boşuk yerine alt çizgi kullanmalıyız. Örnek olarak;
+Resource dosyalarını isimlendirirken küçük-harf kullanmalıyız ve boşluk yerine alt çizgi (_) kullanmalıyız. Örnek olarak;
 
 	activity_main, fragment_user, item_post
 
@@ -48,11 +48,11 @@ Bu şekilde kullanım, herhangi bir amaca yönelik oluşturulmuş layout dosyas�
 
 ####1.2.2.1 Drawable Dosyaları
 
-Drawable resource dosyaları **ic_** ön eki ile adlandırılmalıdır. Sonuna da boyutu yazılmalıdır. 
+Drawable resource dosyaları **ic_name_00dp** şeklinde adlandırılmalıdır.. 
 
 	ic_entrance_24dp , ic_accept_32dp
 
-Bu şekilde bir isimlendirme. Drawable klasörlerinde bulunan ikonların boyutlarının açılmadan öğrenilmesine yardımcı olacaktır. 
+Bu şekilde bir isimlendirme, drawable klasörlerinde bulunan ikonların boyutlarının açılmadan öğrenilmesine yardımcı olacaktır. 
 
 Diğer drawable bileşenlerinin kullanımı aşağıdaki şekilde olmalıdır. 
 
@@ -80,6 +80,7 @@ Selector state resource dosyası oluşurken de duruma göre son ek vermemiz gere
 ####1.2.2.2 Layout Dosyaları
 
 Layout dosyaları aşağıdaki şekilde Java class'ına göre oluşturulmalıdır. 
+**class_java_name**
 
 | Bileşen          | Class İsmi      | Layout İsmi       |
 |------------------|-----------------|-------------------|
@@ -92,7 +93,7 @@ Layout dosyaları aşağıdaki şekilde Java class'ına göre oluşturulmalıdı
 
 ####1.2.2.3 Menu Dosyaları
 
-Menu dosyalarının menu_ ön eki ile isimlendirmesine gerek yoktur. Zaten bu dosyalar menu klasörü içinde bulunmaktadır. 
+Menu dosyalarının menu_ ön eki ile isimlendirilmesine gerek yoktur. Zaten bu dosyalar menu klasörü içinde bulunmaktadır. 
 
 ####1.2.2.4 Values Dosyaları
 
@@ -131,7 +132,7 @@ Hataları şu şekilde handle etmeliyiz.
 
 - Kullanıcıya hata meydana geldiğine dair uyarı vermeliyiz. 
 - Hata oluşması durumunda değişkene sabit bir değer vermeliyiz. 
-- Uygun olan exception'u göstermeliyiz. 
+- Uygun olan exception'ı göstermeliyiz. 
 
 
 ####2.1.2 Türü belli olmayan exception'lar 
@@ -183,7 +184,7 @@ Exceptionlar aynı koddan meydana geliyorsa gruplandırılması gerekmektedir.
         }
 	}
 
-Guruplanmış exceptionlar aşağıdaki gibidir. 
+Gruplanmış exception' lar aşağıdaki gibidir: 
 
 	public void openCustomTab(Context context, @Nullable Uri uri) {
     	Intent intent = buildIntent(context, uri);
@@ -268,9 +269,9 @@ Yukarıdaki kullanım yerine, değişkenin ismini kullanım amacına göre verme
     int elemanSayisi;
 
 
-####2.2.1.2 View Alanalrının İsimlendirmesi
+####2.2.1.2 View Alanlarının İsimlendirmesi
 
-View bileşenlerinin isimlendirirken, bileşenlerinin isimlerine göre adlandırılır. 
+View bileşenleri isimlendirilirken, bileşenlerinin isimlerine göre adlandırılır. 
 
 | View           | Name               |
 |----------------|--------------------|
@@ -791,7 +792,7 @@ Instead, do this:
 
 **Long Parameters**
 
-In the case that a method contains long parameters, we should line break where appropriate. For example when declaring a method we should break after the last comma of the parameter that fits:
+In the case that a method contains long parameters, we should line break where C. For example when declaring a method we should break after the last comma of the parameter that fits:
 
 
     private void someMethod(Context context, String someLongStringName, String text, 
