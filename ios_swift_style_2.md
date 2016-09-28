@@ -4,7 +4,7 @@ Bu dökümanın amacı Swift programlama dilinde uygulama geliştirme prensipler
 
 ## İçindekiler
 
-* [Adlandırma](#Adlandırma)
+* [Adlandırma](#adlandırma)
   * [Protocols](#protocols)
   * [Enumerations](#enumerations)
   * [Prose](#prose)
