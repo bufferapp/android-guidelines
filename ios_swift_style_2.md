@@ -773,27 +773,10 @@ resource.request().onComplete { [weak self] response in
 }
 ```
 
-## Access Control
 
-Full access control annotation in tutorials can distract from the main topic and is not required. Using `private` appropriately, however, adds clarity and promotes encapsulation. Use `private` as the leading property specifier. The only things that should come before access control are the `static` specifier or attributes such as `@IBAction` and `@IBOutlet`.
+## Kontrol Akışı
 
-**Preferred:**
-```swift
-class TimeMachine {  
-  private dynamic lazy var fluxCapacitor = FluxCapacitor()
-}
-```
-
-**Not Preferred:**
-```swift
-class TimeMachine {  
-  lazy dynamic private var fluxCapacitor = FluxCapacitor()
-}
-```
-
-## Control Flow
-
-Prefer the `for-in` style of `for` loop over the `while-condition-increment` style.
+`while-condition-increment` yerine `for-in` ve `for` tercih edilmelidir.
 
 **Preferred:**
 ```swift
@@ -830,82 +813,10 @@ while i < attendeeList.count {
   i += 1
 }
 ```
-## Golden Path
 
-When coding with conditionals, the left hand margin of the code should be the "golden" or "happy" path. That is, don't nest `if` statements. Multiple return statements are OK. The `guard` statement is built for this.
+## Noktalı Virgül
 
-**Preferred:**
-```swift
-func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-
-  guard let context = context else { throw FFTError.noContext }
-  guard let inputData = inputData else { throw FFTError.noInputData }
-    
-  // use context and input to compute the frequencies
-    
-  return frequencies
-}
-```
-
-**Not Preferred:**
-```swift
-func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-
-  if let context = context {
-    if let inputData = inputData {
-      // use context and input to compute the frequencies
-
-      return frequencies
-    }
-    else {
-      throw FFTError.noInputData
-    }
-  }
-  else {
-    throw FFTError.noContext
-  }
-}
-```
-
-When multiple optionals are unwrapped either with `guard` or `if let`, minimize nesting by using the compound version when possible. Example:
-
-**Preferred:**
-```swift
-guard let number1 = number1, number2 = number2, number3 = number3 else { fatalError("impossible") }
-// do something with numbers
-```
-
-**Not Preferred:**
-```swift
-if let number1 = number1 {
-  if let number2 = number2 {
-    if let number3 = number3 {
-      // do something with numbers
-    }
-    else {
-      fatalError("impossible")
-    }
-  }
-  else {
-    fatalError("impossible")
-  }
-}
-else {
-  fatalError("impossible")
-}
-```
-
-### Failing Guards
-
-Guard statements are required to exit in some way. Generally, this should be simple one line statement such as `return`, `throw`, `break`, `continue`, and `fatalError()`. Large code blocks should be avoided. If cleanup code is required for multiple exit points, consider using a `defer` block to avoid cleanup code duplication.
-
-## Semicolons
-
-Swift does not require a semicolon after each statement in your code. They are only required if you wish to combine multiple statements on a single line.
-
-Do not write multiple statements on a single line separated with semicolons.
-
-The only exception to this rule is the `for-conditional-increment` construct, which requires semicolons. However, alternative `for-in` constructs should be used where possible.
+Tek satıra birden fazla komut yazılmamalıdır ve komut satırlarının sonuna noktalı virgül eklenmemelidir.
 
 **Preferred:**
 ```swift
@@ -917,11 +828,9 @@ let swift = "not a scripting language"
 let swift = "not a scripting language";
 ```
 
-**NOTE**: Swift is very different from JavaScript, where omitting semicolons is [generally considered unsafe](http://stackoverflow.com/questions/444080/do-you-recommend-using-semicolons-after-every-statement-in-javascript)
+## Parantezler
 
-## Parentheses
-
-Parentheses around conditionals are not required and should be omitted.
+Koşul ifadelerinde parantezlere gerekli değildir ve kaldırılmalıdır.
 
 **Preferred:**
 ```swift
@@ -937,7 +846,9 @@ if (name == "Hello") {
 }
 ```
 
-## Copyright Statement
+## Telif Hakları
+
+*BURAYA TÜRKÇE TELİF YAZISI EKLENEBİLİR.
 
 The following copyright statement should be included at the top of every source
 file:
@@ -962,55 +873,18 @@ file:
      * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
      * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
      * THE SOFTWARE.
-     */
+     */ 
 
-## Smiley Face
+## Emeği Geçenler
 
-Smiley faces are a very prominent style feature of the raywenderlich.com site! It is very important to have the correct smile signifying the immense amount of happiness and excitement for the coding topic. The closing square bracket `]` is used because it represents the largest smile able to be captured using ASCII art. A closing parenthesis `)` creates a half-hearted smile, and thus is not preferred.
+* [Furkan Ozoglu](https://github.com/fozoglu)
+* [Salih Yalcin](https://github.com/salihyalcin)
+* [Sibel Oztemir](https://github.com/soztemir)
+* [Akife Altun](https://github.com/???)
+* [Teoman Yaman](https://github.com/???)
+* [M.Ikbal Yasar](https://github.com/???)
 
-**Preferred:**
-```
-:]
-```
-
-**Not Preferred:**
-```
-:)
-```  
-
-## Credits
-
-[Ray Fix](https://github.com/rayfix) currently maintains this style guide.
-It is a collaborative effort from the most stylish raywenderlich.com team members and its community: 
-
-* [Jawwad Ahmad](https://github.com/jawwad)
-* [Soheil Moayedi Azarpour](https://github.com/moayes)
-* [Scott Berrevoets](https://github.com/Scott90)
-* [Eric Cerney](https://github.com/ecerney)
-* [Sam Davies](https://github.com/sammyd)
-* [Evan Dekhayser](https://github.com/edekhayser)
-* [Jean-Pierre Distler](https://github.com/pdistler)
-* [Colin Eberhardt](https://github.com/ColinEberhardt)
-* [Ray Fix](https://github.com/rayfix)
-* [Joshua Greene](https://github.com/JRG-Developer)
-* [Greg Heo](https://github.com/gregheo)
-* [Matthijs Hollemans](https://github.com/hollance)
-* [Erik Kerber](https://github.com/eskerber)
-* [Christopher LaPollo](https://github.com/elephantronic)
-* [Ben Morrow](https://github.com/benmorrow)
-* [Andy Pereira](https://github.com/macandyp)
-* [Ryan Nystrom](https://github.com/rnystrom)
-* [Andy Obusek](https://github.com/obuseme)
-* [Cesare Rocchi](https://github.com/funkyboy)
-* [Ellen Shapiro](https://github.com/designatednerd)
-* [Marin Todorov](https://github.com/icanzilb)
-* [Chris Wagner](https://github.com/cwagdev)
-* [Ray Wenderlich](https://github.com/rwenderlich)
-* [Jack Wu](https://github.com/jackwu95)
-
-Hat tip to [Nicholas Waynik](https://github.com/ndubbs) and the [Objective-C Style Guide](https://github.com/raywenderlich/objective-c-style-guide) team!
-
-We also draw inspiration from Apple’s reference material on Swift:
+Apple tarafından geliştircilere hazırlanmış swift yardım dökümanları:
 
 * [The Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
 * [The Swift Programming Language](https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html)
