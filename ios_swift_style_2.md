@@ -919,9 +919,9 @@ let swift = "not a scripting language";
 
 **NOTE**: Swift is very different from JavaScript, where omitting semicolons is [generally considered unsafe](http://stackoverflow.com/questions/444080/do-you-recommend-using-semicolons-after-every-statement-in-javascript)
 
-## Parentheses
+## Parantezler
 
-Parentheses around conditionals are not required and should be omitted.
+Koşul ifadelerinde parantezlere gerekli değildir ve kaldırılmalıdır.
 
 **Preferred:**
 ```swift
@@ -937,7 +937,9 @@ if (name == "Hello") {
 }
 ```
 
-## Copyright Statement
+## Telif Hakları
+
+*BURAYA TÜRKÇE TELİF YAZISI EKLENEBİLİR.
 
 The following copyright statement should be included at the top of every source
 file:
@@ -962,55 +964,18 @@ file:
      * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
      * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
      * THE SOFTWARE.
-     */
+     */ 
 
-## Smiley Face
+## Emeği Geçenler
 
-Smiley faces are a very prominent style feature of the raywenderlich.com site! It is very important to have the correct smile signifying the immense amount of happiness and excitement for the coding topic. The closing square bracket `]` is used because it represents the largest smile able to be captured using ASCII art. A closing parenthesis `)` creates a half-hearted smile, and thus is not preferred.
+* [Furkan Ozoglu](https://github.com/fozoglu)
+* [Salih Yalcin](https://github.com/salihyalcin)
+* [Sibel Oztemir](https://github.com/soztemir)
+* [Akife Altun](https://github.com/???)
+* [Teoman Yaman](https://github.com/???)
+* [M.Ikbal Yasar](https://github.com/???)
 
-**Preferred:**
-```
-:]
-```
-
-**Not Preferred:**
-```
-:)
-```  
-
-## Credits
-
-[Ray Fix](https://github.com/rayfix) currently maintains this style guide.
-It is a collaborative effort from the most stylish raywenderlich.com team members and its community: 
-
-* [Jawwad Ahmad](https://github.com/jawwad)
-* [Soheil Moayedi Azarpour](https://github.com/moayes)
-* [Scott Berrevoets](https://github.com/Scott90)
-* [Eric Cerney](https://github.com/ecerney)
-* [Sam Davies](https://github.com/sammyd)
-* [Evan Dekhayser](https://github.com/edekhayser)
-* [Jean-Pierre Distler](https://github.com/pdistler)
-* [Colin Eberhardt](https://github.com/ColinEberhardt)
-* [Ray Fix](https://github.com/rayfix)
-* [Joshua Greene](https://github.com/JRG-Developer)
-* [Greg Heo](https://github.com/gregheo)
-* [Matthijs Hollemans](https://github.com/hollance)
-* [Erik Kerber](https://github.com/eskerber)
-* [Christopher LaPollo](https://github.com/elephantronic)
-* [Ben Morrow](https://github.com/benmorrow)
-* [Andy Pereira](https://github.com/macandyp)
-* [Ryan Nystrom](https://github.com/rnystrom)
-* [Andy Obusek](https://github.com/obuseme)
-* [Cesare Rocchi](https://github.com/funkyboy)
-* [Ellen Shapiro](https://github.com/designatednerd)
-* [Marin Todorov](https://github.com/icanzilb)
-* [Chris Wagner](https://github.com/cwagdev)
-* [Ray Wenderlich](https://github.com/rwenderlich)
-* [Jack Wu](https://github.com/jackwu95)
-
-Hat tip to [Nicholas Waynik](https://github.com/ndubbs) and the [Objective-C Style Guide](https://github.com/raywenderlich/objective-c-style-guide) team!
-
-We also draw inspiration from Apple’s reference material on Swift:
+Apple tarafından geliştircilere hazırlanmış swift yardım dökümanları:
 
 * [The Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
 * [The Swift Programming Language](https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html)
