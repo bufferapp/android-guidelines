@@ -1,10 +1,6 @@
-# The Official raywenderlich.com Swift Style Guide.
+# iOS (Swift dilinde) Uygulama Geliştirirken İzlenmesi Gereken Yollar.
 
-This style guide is different from others you may see, because the focus is centered on readability for print and the web. We created this style guide to keep the code in our books, tutorials, and starter kits nice and consistent — even though we have many different authors working on the books.
-
-Our overarching goals are conciseness, readability, and simplicity.
-
-Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/raywenderlich/objective-c-style-guide) too.
+Bu dökümanın amacı Swift programlama dilinde uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek kodun okunabilirliği ve sadeliği açısından avantajlı olacaktır.
 
 ## Table of Contents
 
