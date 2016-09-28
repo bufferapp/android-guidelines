@@ -2,9 +2,8 @@
 
 Bu dökümanın amacı Swift programlama dilinde uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek kodun okunabilirliği ve sadeliği açısından avantajlı olacaktır.
 
-## Table of Contents
+## İçindekiler
 
-* [Correctness](#correctness)
 * [Naming](#naming)
   * [Protocols](#protocols)
   * [Enumerations](#enumerations)
@@ -48,15 +47,14 @@ Bu dökümanın amacı Swift programlama dilinde uygulama geliştirme prensipler
 * [Credits](#credits)
 
 
-## Correctness
 
-Consider warnings to be errors. This rule informs many stylistic decisions such as not to use the `++` or `--` operators, C-style for loops, or strings as selectors.
 
-## Naming
+## Adlandırma
 
-Use descriptive names with camel case for classes, methods, variables, etc. Type names (classes, structures, enumerations and protocols) should be capitalized, while method names and variables should start with a lower case letter.
+Class, methods, değişken, vs. adlar için açıklayıcı adlar kullanılması gerekir. Tip adları; classes, structures, enumerations ve protocols büyük harfle başlarken, method ve değişken adları küçük harfle başlamalıdır.
 
-**Preferred:**
+
+**Tercih Edilen:**
 
 ```swift
 private let maximumWidgetCount = 100
@@ -67,7 +65,7 @@ class WidgetContainer {
 }
 ```
 
-**Not Preferred:**
+**Tercih Edilmeyen:**
 
 ```swift
 let MAX_WIDGET_COUNT = 100
