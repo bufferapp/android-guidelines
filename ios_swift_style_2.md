@@ -773,27 +773,10 @@ resource.request().onComplete { [weak self] response in
 }
 ```
 
-## Access Control
 
-Full access control annotation in tutorials can distract from the main topic and is not required. Using `private` appropriately, however, adds clarity and promotes encapsulation. Use `private` as the leading property specifier. The only things that should come before access control are the `static` specifier or attributes such as `@IBAction` and `@IBOutlet`.
+## Kontrol Akışı
 
-**Preferred:**
-```swift
-class TimeMachine {  
-  private dynamic lazy var fluxCapacitor = FluxCapacitor()
-}
-```
-
-**Not Preferred:**
-```swift
-class TimeMachine {  
-  lazy dynamic private var fluxCapacitor = FluxCapacitor()
-}
-```
-
-## Control Flow
-
-Prefer the `for-in` style of `for` loop over the `while-condition-increment` style.
+`while-condition-increment` yerine `for-in` ve `for` tercih edilmelidir.
 
 **Preferred:**
 ```swift
@@ -830,82 +813,10 @@ while i < attendeeList.count {
   i += 1
 }
 ```
-## Golden Path
 
-When coding with conditionals, the left hand margin of the code should be the "golden" or "happy" path. That is, don't nest `if` statements. Multiple return statements are OK. The `guard` statement is built for this.
+## Noktalı Virgül
 
-**Preferred:**
-```swift
-func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-
-  guard let context = context else { throw FFTError.noContext }
-  guard let inputData = inputData else { throw FFTError.noInputData }
-    
-  // use context and input to compute the frequencies
-    
-  return frequencies
-}
-```
-
-**Not Preferred:**
-```swift
-func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-
-  if let context = context {
-    if let inputData = inputData {
-      // use context and input to compute the frequencies
-
-      return frequencies
-    }
-    else {
-      throw FFTError.noInputData
-    }
-  }
-  else {
-    throw FFTError.noContext
-  }
-}
-```
-
-When multiple optionals are unwrapped either with `guard` or `if let`, minimize nesting by using the compound version when possible. Example:
-
-**Preferred:**
-```swift
-guard let number1 = number1, number2 = number2, number3 = number3 else { fatalError("impossible") }
-// do something with numbers
-```
-
-**Not Preferred:**
-```swift
-if let number1 = number1 {
-  if let number2 = number2 {
-    if let number3 = number3 {
-      // do something with numbers
-    }
-    else {
-      fatalError("impossible")
-    }
-  }
-  else {
-    fatalError("impossible")
-  }
-}
-else {
-  fatalError("impossible")
-}
-```
-
-### Failing Guards
-
-Guard statements are required to exit in some way. Generally, this should be simple one line statement such as `return`, `throw`, `break`, `continue`, and `fatalError()`. Large code blocks should be avoided. If cleanup code is required for multiple exit points, consider using a `defer` block to avoid cleanup code duplication.
-
-## Semicolons
-
-Swift does not require a semicolon after each statement in your code. They are only required if you wish to combine multiple statements on a single line.
-
-Do not write multiple statements on a single line separated with semicolons.
-
-The only exception to this rule is the `for-conditional-increment` construct, which requires semicolons. However, alternative `for-in` constructs should be used where possible.
+Tek satıra birden fazla komut yazılmamalıdır ve komut satırlarının sonuna noktalı virgül eklenmemelidir.
 
 **Preferred:**
 ```swift
@@ -916,8 +827,6 @@ let swift = "not a scripting language"
 ```swift
 let swift = "not a scripting language";
 ```
-
-**NOTE**: Swift is very different from JavaScript, where omitting semicolons is [generally considered unsafe](http://stackoverflow.com/questions/444080/do-you-recommend-using-semicolons-after-every-statement-in-javascript)
 
 ## Parantezler
 
