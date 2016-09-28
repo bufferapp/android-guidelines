@@ -884,20 +884,21 @@ Don’t leave author comments, these aren’t useful and provide no real meaning
       */
       
     
-### 2.3.2 Resource naming
+### 2.3.2 Resource dosyalarının isimlendirilmesi
 
-All resource names and IDs should be written using lowercase and underscores, for example:
-
+Tüm resource dosyaları isimlendirilirken küçük harf ve alt çizgi kullanılmalıdır. 
 
     text_username, activity_main, fragment_user, error_message_network_connection
     
-The main reason for this is consistency, it also makes it easier to search for views within layout files when it comes to altering the contents of the file.
+Bu şekilde kullanımın bize kazandırdığı en büyük avantaj, proje dosyalarında bir tutarlılığın oluşmasıdır. 
     
-#### 2.3.2.1 ID naming
+#### 2.3.2.1 ID İsimlendirmesi
 
-All IDs should be prefixed using the name of the element that they have been declared for. 
+Tüm ID'ler isimlendirilirken ait olduğu element'e göre isimlendirilir. 
 
-| Element        | Prefix    |
+Örneğin;
+
+| Element        | Ön Ek     |
 |----------------|-----------|
 | ImageView      | image_    |
 | Fragment       | fragment_ |
@@ -906,7 +907,7 @@ All IDs should be prefixed using the name of the element that they have been dec
 | TextView       | text_     |
 | View           | view_     |
 
-For example:
+Kullanım:
 
 
     <TextView
@@ -914,8 +915,6 @@ For example:
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-
-Views that typically are only one per layout, such as a toolbar, can simply be given the id of it's view type. E.g.```toolbar```.
 
 #### 2.3.2.2 Strings
 
