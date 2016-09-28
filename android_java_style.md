@@ -1149,13 +1149,14 @@ When using the Espresso API, methods should be chained on new lines to make the 
 Chaining calls in this style not only helps us stick to less than 100 characaters per line but it also makes it easy to read the chain of events taking place in espresso tests. 
             
 
-# 3. Gradle Style
-## 3.1 Dependencies
+# 3. Gradle Stili
+## 3.1 Kütüphaneler
 
-### 3.1.1 Versioning
+### 3.1.1 Versiyonlama
 
-Where applicable, versioning that is shared across multiple dependencies should be defined as a variable within the dependencies scope. For example:
+Uygulanabilirse, aynı versiyonu paylaşan kütüphanelerin versiyon numarası tek bir değişkenle tutulup, diğer kütüphanelerle paylaşılabilir. 
 
+Örneğin;
 
     final SUPPORT_LIBRARY_VERSION = '23.4.0'
     
@@ -1166,11 +1167,11 @@ Where applicable, versioning that is shared across multiple dependencies should 
     compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
     compile "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
     
-This makes it easy to update dependencies in the future as we only need to change the version number once for multiple dependencies.
+Bu şekilde kullandığımızda ileride kütüphanelerde güncelleme yapacağımız zaman tek seferde versiyon numarasını değiştirerek tüm kütüphaneleri tek seferde güncellemiş oluruz. 
 
-### 3.1.2 Grouping
+### 3.1.2 Gruplama
 
-Where applicable, dependencies should be grouped by package name, with spaces in-between the groups. For example:
+Aynı package adını kullanan kütüphaneler gruplanabilir. 
 
 
     compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
@@ -1185,25 +1186,23 @@ Where applicable, dependencies should be grouped by package name, with spaces in
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
 
-`compile` , `testCompile` and `androidTestCompile`  dependencies should also be grouped into their corresponding section. For example:
+`compile` , `testCompile` and `androidTestCompile`  kütüphaneleri de kendi içerisinde gruplanabilir. 
 
-
-    // App Dependencies
+    // Uygulama Kütüphaneleri
     compile "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
     compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
     
-    // Instrumentation test dependencies
+    // Cihaz testi kütüphanesi
     androidTestCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
     
-    // Unit tests dependencies
+    // Unit test kütüphanesi
     testCompile 'org.robolectric:robolectric:3.0'
 
-Both of these approaches makes it easy to locate specific dependencies when required as it keeps dependency declarations both clean and tidy 🙌
+Bu şekilde kullanım,geliştiriciye kütüphanelerin kullanımında bir düzen ve kolaylık sağlamaktadır. 
 
 
-### 3.1.3 Independent Dependencies
+### 3.1.3 Amaca uygun kütüphaneler
 
-Where dependencies are only used individually for application or test purposes, be sure to only compile them using `compile` , `testCompile` or `androidTestCompile` . For example, where the robolectric dependency is only required for unit tests, it should be added using:
-
+Uygulamaya eklenen kütüphaneler belirli amaca uygun olarak kullanılacaksa `compile` , `testCompile` veya `androidTestCompile` yazım tarzı kullanılan amacına uygun olmalı. Örneğin; roboelectric kütüphanesi sadece unit test amacı ile gereklidir. Bu yüzden de `testCompile` şeklinde eklenmektedir. 
 
     testCompile 'org.robolectric:robolectric:3.0' 
