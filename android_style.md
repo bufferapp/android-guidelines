@@ -1,4 +1,4 @@
-#iOS Uygulama Geliştirme Prensipleri	
+#Android Uygulama Geliştirme Prensipleri	
 ---------------------------
 
 Bu uygulamanın amacı Android uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek temiz ve istikrarlı kod yazımında bize yardımcı olacaktır.
