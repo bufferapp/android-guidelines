@@ -883,116 +883,6 @@ Don’t leave author comments, these aren’t useful and provide no real meaning
       * Created By Joe 18/06/2016
       */
       
-###2.2.24 Sectioning code
-
-#### 2.2.24.1 Java code
-
-If creating ‘sections’ for code, this should be done using the following approach, like this:
-
-
-    public void method() { }
-    
-    public void someOtherMethod() { }
-    
-    /********* Mvp Method Implementations  ********/
-    
-    public void anotherMethod() { }
-    
-    /********* Helper Methods  ********/
-    
-    public void someMethod() { }
-
-Not like this:
-
-
-    public void method() { }
-    
-    public void someOtherMethod() { }
-    
-    // Mvp Method Implementations
-    
-    public void anotherMethod() { }
-
-This makes sectioned methods easier to located in a class.
-
-#### 2.2.24.2 Strings file
-
-String resources defined within the string.xml file should be section by feature, for example:
-
-
-    // User Profile Activity
-    <string name="button_save">Save</string>
-    <string name="button_cancel">Cancel</string>
-    
-    // Settings Activity
-    <string name="message_instructions">...</string>
-    
-Not only does this help keep the strings file tidy, but it makes it easier to find strings when they need altering.
-    
-#### 2.2.24.3 RxJava chaining
-
-When chaining Rx operations, every operator should be on a new line, breaking the line before the period `.` . For example:
-
-
-    return mDataManager.getPost()
-                .concatMap(new Func1<Post, Observable<? extends Post>>() {
-                    @Override
-                     public Observable<? extends Post> call(Post post) {
-                         return mRetrofitService.getPost(post.id);
-                     }
-                })
-                .retry(new Func2<Integer, Throwable, Boolean>() {
-                     @Override
-                     public Boolean call(Integer numRetries, Throwable throwable) {
-                         return throwable instanceof RetrofitError;
-                     }
-                });
-                
-This make it easier to understand the flow of operation within an Rx chain of calls.
-                
-### 2.2.25 Butterknife
-
-#### 2.2.25.1 Event listeners
-
-Where possible, make use of Butterknife listener bindings. For example, when listening for a click event instead of doing this:
-
-
-    mSubmitButton.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-            // Some code here...
-        }
-      };
-
-Do this:
-
-
-    @OnClick(R.id.button_submit)
-    public void onSubmitButtonClick() { }
-    
-
-## 2.3 XML Style Rules
-
-### 2.3.1 Use self=-closing tags
-
-When a View in an XML layout does not have any child views, self closing tags should be used.
-
-Do:
-
-
-    <ImageView
-        android:id="@+id/image_user"
-        android:layout_width="90dp"
-        android:layout_height="90dp" />
-
-Don’t:
-
-
-    <ImageView
-        android:id="@+id/image_user"
-        android:layout_width="90dp"
-        android:layout_height="90dp">
-    </ImageView>
-    
     
 ### 2.3.2 Resource naming
 
@@ -1029,21 +919,21 @@ Views that typically are only one per layout, such as a toolbar, can simply be g
 
 #### 2.3.2.2 Strings
 
-All string names should begin with a prefix for the part of the application that they are being referenced from. For example:
+String isimlendirmeleri kullanıldığı ekrana ve kullanım amacına göre isimlendirilmelidir. 
 
-| Screen                | String         | Resource Name             |
+| Ekran                 | String ifade   | Strings.xml karşılığı     |
 |-----------------------|----------------|---------------------------|
 | Registration Fragment | “Register now” | registration_register_now |
 | Sign Up Activity      | “Cancel”       | sign_up_cancel            |
 | Rate App Dialog       | “No thanks”    | rate_app_no_thanks        |
 
-If it’s not possible to name the referenced like the above, we can use the following rules:
+Eğer yukarıdaki gibi isimlendirme mümkün değilse aşağıdaki gibi kullanım tipine göre isimlendirme opsiyonu kullanılabilir. 
 
-| Prefix  | Description                                  |
+| Ön Ek   | Açıklama                                  |
 |---------|----------------------------------------------|
-| error_  | Used for error messages                      |
-| title_  | Used for dialog titles                       |
-| action_ | Used for option menu actions                 |
+| error_  | Error mesajalrı için kullanılır.             |
+| title_  | Dialog başlıklarında kullanılır.             |
+| action_ | Menü ile ilgili string ifadelerde kullanılır.|
 | msg_    | Used for generic message such as in a dialog |
 | label_  | Used for activity labels                     |
 
@@ -1053,9 +943,9 @@ Two important things to note for String resources:
  
  - String resources should **always** be defined in the strings file and never hardcoded in layout or class files.
 
-#### 2.3.2.3 Styles and themes
+#### 2.3.2.3 Stiller ve temalar
 
-When defining both Styles & Themes, they should be named using UpperCamelCase. For example:
+Stil ve tema isimlendirmeleri BuyukKucuk isimlendirme şeklinde yapılmalıdır. 
 
 
     AppTheme.DarkBackground.NoActionBar
@@ -1065,89 +955,16 @@ When defining both Styles & Themes, they should be named using UpperCamelCase. F
     TitleTextStyle
     
     
-### 2.3.3 Attributes ordering
+### 2.3.3 XML Attribute sıralanması
+Attribute sıralaması için Android Studio içerisinde bir fonksiyon bulunmalıdır. XML ile ilgili yaptığımız değişikliklikler sonrası bu fonksiyonu çalıştırmalıyız. 
 
-Ordering attributes not only looks tidy but it helps to make it quicker when looking for attributes within layout files. As a general rule, 
-
-
-1. View Id
-2. Style
-3. Layout width and layout height
-4. Other `layout_` attributes, sorted alphabetically
-5. Remaining attributes, sorted alphabetically
-
-For example:
-
-    <Button
-        android:id="@id/button_accept"
-        style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:padding="16dp"
-        android:text="@string/button_skip_sign_in"
-        android:textColor="@color/bluish_gray" />
-        
-Note: This formatting can be carried out by using the format feature in android studio - 
-
+Windows bilgisayarlar için çalıştırma yöntemi;
+`Ctrl + shift + L` 
+Mac için çalıştırma yöntemi; 
 `cmd + shift + L` 
 
-Doing this makes it easy to navigate through XML attributes when it comes to making changes to layout files.
 
 
-## 2.4 Tests style rules
-
-### 2.4.1 Unit tests
-
-Any Unit Test classes should be written to match the name of the class that the test are targeting, followed by the Test suffix. For example:
-
-| Class                | Test Class               |
-|----------------------|--------------------------|
-| DataManager          | DataManagerTest          |
-| UserProfilePresenter | UserProfilePresenterTest |
-| PreferencesHelper    | PreferencesHelperTest    |
-
-All Test methods should be annotated with the `@Test` annotation, the methods should be named using the following template:
-
-
-    @Test
-    public void methodNamePreconditionExpectedResult() { }
-
-So for example, if we want to check that the signUp() method with an invalid email address fails the our test would look like:
-
-
-    @Test
-    public void signUpWithInvalidEmailFails() { }
-
-Tests should focus on testing only what the method name entitles, if there’s extra conditions being tested in your Test method then this should be moved to it’s own individual test.
-
-If a class we are testing contains many different methods, then the tests should be split across multiple test classes - this helps to keep the tests more maintainable and easier to locate. For example, a DatabaseHelper class may need to be split into multiple test classes such as :
-
-
-    DatabaseHelperUserTest
-    DatabaseHelperPostsTest
-    DatabaseHelperDraftsTest
-
-### 2.4.2 Espresso tests
-
-Each Espresso test class generally targets an Activity, so the name given to it should match that of the targeted Activity, again followed by Test. For example:
-
-| Class                | Test Class               |
-|----------------------|--------------------------|
-| MainActivity         | MainActivityTest         |
-| ProfileActivity      | ProfileActivityTest      |
-| DraftsActivity       | DraftsActivityTest       |
-
-When using the Espresso API, methods should be chained on new lines to make the statements more readable, for example:
-
-
-    onView(withId(R.id.text_title))
-            .perform(scrollTo())
-            .check(matches(isDisplayed()))
-            
-Chaining calls in this style not only helps us stick to less than 100 characaters per line but it also makes it easy to read the chain of events taking place in espresso tests. 
-            
 
 # 3. Gradle Stili
 ## 3.1 Kütüphaneler
