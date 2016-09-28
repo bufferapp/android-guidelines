@@ -52,9 +52,9 @@ Apple tarafından geliştircilere hazırlanmış yardım dökümanları:
 * [Xcode Project](#xcode-project)
 
 
-## Language
+## Kullanılan Dil
 
-US English should be used.
+Programlama dili olarak mümkün olduğunca ingilizce kullanılmalıdır.
 
 **Preferred:**
 ```objc
@@ -67,9 +67,9 @@ UIColor *myColour = [UIColor whiteColor];
 ```
 
 
-## Code Organization
+## Kod Organizasyonu
 
-Use `#pragma mark -` to categorize methods in functional groupings and protocol/delegate implementations following this general structure.
+`#pragma mark -` ile kodları gruplandır.
 
 ```objc
 #pragma mark - Lifecycle
@@ -111,10 +111,10 @@ Use `#pragma mark -` to categorize methods in functional groupings and protocol/
 - (NSString *)description {}
 ```
 
-## Spacing
+## Boşluklar
 
-* Indent using 2 spaces (this conserves space in print and makes line wrapping less likely). Never indent with tabs. Be sure to set this preference in Xcode.
-* Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
+* Boşluklar aşağıdaki örnekdeki gibi olmalıdır. 
+* (`if`/`else`/`switch`/`while` etc.) kullanımlardan sonra süslü parantez ile bitirilmeli kod bloğunu kapatan parantez ise yeni satırda olmalıdır.
 
 **Preferred:**
 ```objc
@@ -135,10 +135,8 @@ else {
     //Do something else
 }
 ```
-
-* There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but often there should probably be new methods.
-* Prefer using auto-synthesis. But if necessary, `@synthesize` and `@dynamic` should each be declared on new lines in the implementation.
-* Colon-aligning method invocation should often be avoided.  There are cases where a method signature may have >= 3 colons and colon-aligning makes the code more readable. Please do **NOT** however colon align methods containing blocks because Xcode's indenting makes it illegible.
+* Metotların parametreleri okunaklı olması için tek satırda kullanılmalıdır.
+* `@synthesize` ve `@dynamic` eğer varsa yeni satırda tanımlanmalıdır.
 
 **Preferred:**
 
@@ -164,17 +162,15 @@ else {
                  }];
 ```
 
-## Comments
+## Yorumlar
 
 When they are needed, comments should be used to explain **why** a particular piece of code does something. Any comments that are used must be kept up-to-date or deleted.
 
 Block comments should generally be avoided, as code should be as self-documenting as possible, with only the need for intermittent, few-line explanations. *Exception: This does not apply to those comments used to generate documentation.*
 
-## Naming
+## İsimlendirme
 
-Apple naming conventions should be adhered to wherever possible, especially those related to [memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
-
-Long, descriptive method and variable names are good.
+Metot ve değişken isimleri uzun açıklayıcı olmalıdır. 
 
 **Preferred:**
 
