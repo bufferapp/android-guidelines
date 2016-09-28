@@ -1,7 +1,7 @@
 #iOS Uygulama Geliştirme Prensipleri	
 ---------------------------
 
-Bu uygulamanın amacı Android uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek temiz ve istikrarlı kod yazımında bize yardımcı olacaktır.
+Bu uygulamanın amacı iOS platformunda Swift uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek temiz ve istikrarlı kod yazımında bize yardımcı olacaktır.
 
 Not: Bazı yerlerde İngilizce-Türkçe kullanımında karışıklık olmaktadır. Bunlar kullanılan kelimelerin tam karşılığının olmamasından kaynaklanmaktadır. Örneğin; handle etmek , class dosyaları..
 
