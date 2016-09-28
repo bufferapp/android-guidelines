@@ -1,15 +1,10 @@
-# The Official raywenderlich.com Swift Style Guide.
+# iOS (Swift dilinde) Uygulama Geliştirirken İzlenmesi Gereken Yollar.
 
-This style guide is different from others you may see, because the focus is centered on readability for print and the web. We created this style guide to keep the code in our books, tutorials, and starter kits nice and consistent — even though we have many different authors working on the books.
+Bu dökümanın amacı Swift programlama dilinde uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek kodun okunabilirliği ve sadeliği açısından avantajlı olacaktır.
 
-Our overarching goals are conciseness, readability, and simplicity.
+## İçindekiler
 
-Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/raywenderlich/objective-c-style-guide) too.
-
-## Table of Contents
-
-* [Correctness](#correctness)
-* [Naming](#naming)
+* [Adlandırma](#adlandırma)
   * [Protocols](#protocols)
   * [Enumerations](#enumerations)
   * [Prose](#prose)
@@ -52,15 +47,14 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
 * [Credits](#credits)
 
 
-## Correctness
 
-Consider warnings to be errors. This rule informs many stylistic decisions such as not to use the `++` or `--` operators, C-style for loops, or strings as selectors.
 
-## Naming
+## Adlandırma
 
-Use descriptive names with camel case for classes, methods, variables, etc. Type names (classes, structures, enumerations and protocols) should be capitalized, while method names and variables should start with a lower case letter.
+Class, methods, değişken, vs. adlar için açıklayıcı adlar kullanılması gerekir. Tip adları; classes, structures, enumerations ve protocols büyük harfle başlarken, method ve değişken adları küçük harfle başlamalıdır.
 
-**Preferred:**
+
+**Tercih Edilen:**
 
 ```swift
 private let maximumWidgetCount = 100
@@ -71,7 +65,7 @@ class WidgetContainer {
 }
 ```
 
-**Not Preferred:**
+**Tercih Edilmeyen:**
 
 ```swift
 let MAX_WIDGET_COUNT = 100
