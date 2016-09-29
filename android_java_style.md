@@ -1,7 +1,7 @@
-#Android Uygulama Geliştirme Prensipleri	
+#Android Kod Yazım Kılavuzu	
 ---------------------------
 
-Bu uygulamanın amacı Android uygulama geliştirme prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek temiz ve istikrarlı kod yazımında bize yardımcı olacaktır.
+Bu dokümanın amacı Android uygulama geliştirirken bize yardımcı olacak kod yazım prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek temiz ve istikrarlı kod yazımında bize yardımcı olacaktır.
 
 Not: Bazı yerlerde İngilizce-Türkçe kullanımında karışıklık olmaktadır. Bunlar kullanılan kelimelerin tam karşılığının olmamasından kaynaklanmaktadır. Örneğin; handle etmek , class dosyaları..
 
@@ -38,7 +38,7 @@ Android kütüphanesinden kalıtılmış bileşen **her zaman** hangi sınıftan
 
 BüyükKüçük harf şeklinde kullanılan class isimleri okunabilirlik açısından kolaylık sağlamaktadır. Ayrıca class'ları bileşenlerin isimlerine göre isimlendirme de hangi class'ın ne için kullanıldığı hakkında bize bilgi vermektedir. Örnek olarak RegistrationDialog bize kayıt ile ilgili işlemin bu dialog'da yapıldığını göstermektedir. 
 	
-####1.2.1 Resource Dosyaları
+####1.2.2 Resource Dosyaları
 
 Resource dosyalarını isimlendirirken küçük-harf kullanmalıyız ve boşluk yerine alt çizgi (_) kullanmalıyız. Örnek olarak;
 
@@ -102,7 +102,7 @@ Values kısmında bulunan dosyalar çoğul olmalıdır.
 	attrs.xml, strings.xml, styles.xml, colors.xml, dimens.xml
 
 
-##2. Code Guidelines
+##2. Kod Rehberi
 
 ###2.1 Java Dili Kuralları
 
@@ -323,7 +323,6 @@ Field' lar metotlar ve sınıflar adlandırılırken:
 - Kolay arama yapılabilmeli : Örneğin bir methot' u bir sınıf içerisinde ararken kolayca sonuca ulaştırabilecek isimler tercih edilmelidir. 
 - Maceristan notasyonu (Hungarian notation- mLocation vb.) yukarıda bahsedilen üç maddeye uymadığı için kullanmayınız.
 
-####2.2.6 Treat acronyms as words
 ####2.2.6 Kısaltmaları (Baş harflerden oluşan) kelime olarak kullanma
 Sınıf isimlerinin,değişken isimlerinin kısaltmaları kelime olarak kullanıken sadece baş harfi büyük harfle yazılarak kullanılmalıdır. 
 Örneğin:
@@ -497,12 +496,12 @@ Metotlar yada class lar için kullanılan annotation'lar satır başına sadece 
     }
     
 
-####2.2.12 Kullanılmayan elementler
+####2.2.11 Kullanılmayan elementler
 
 Bütün kullanılmayan elementler **fields**, **imports**, **methods** and **classes** kaldırılmalıdır.(Eğer özel bir sebebi yoksa).
 
 
-####2.2.13 Arguments in fragments and activities
+####2.2.12 Arguments in fragments and activities
 
 intent ve bundle ile veri gönderirken, key - value aşağıdaki tanımlamalar kullanılmalıdır.
 
@@ -539,9 +538,9 @@ Bir fragment' e veri gönderirken bir EXTRA aracılığı ile gönderilir.
     
     }
     
-###2.2.23 Yorum satırları
+###2.2.13 Yorum satırları
 
-####2.2.23.1 Satır içi yorumlar
+####2.2.13.1 Satır içi yorumlar
 
 Kodların kompleks olduğu durumlarda okuyucunun anlaması için kolay anlaşılabilir cümlelerle açıklamalar yazılmalıdır. Fakat aslolan kodların yorum satırı olmadan anlaşılabilecek şekilde yazılmasıdır.
 
@@ -549,7 +548,7 @@ Kodların kompleks olduğu durumlarda okuyucunun anlaması için kolay anlaşıl
 
 
     
-### 2.3.2 Resource dosyalarının isimlendirilmesi
+### 2.3 Resource dosyalarının isimlendirilmesi
 
 Tüm resource dosyaları isimlendirilirken küçük harf ve alt çizgi kullanılmalıdır. 
 
@@ -557,7 +556,7 @@ Tüm resource dosyaları isimlendirilirken küçük harf ve alt çizgi kullanıl
     
 Bu şekilde kullanımın bize kazandırdığı en büyük avantaj, proje dosyalarında bir tutarlılığın oluşmasıdır. 
     
-#### 2.3.2.1 ID İsimlendirmesi
+#### 2.3.1 ID İsimlendirmesi
 
 Tüm ID'ler isimlendirilirken ait olduğu element'e göre isimlendirilir. 
 
@@ -581,7 +580,7 @@ Kullanım:
         android:layout_height="wrap_content" />
 
 
-#### 2.3.2.2 Strings
+#### 2.3.2 Strings
 
 String isimlendirmeleri kullanıldığı ekrana ve kullanım amacına göre isimlendirilmelidir. 
 
@@ -607,7 +606,7 @@ Two important things to note for String resources:
  
  - String resources should **always** be defined in the strings file and never hardcoded in layout or class files.
 
-#### 2.3.2.3 Stiller ve temalar
+#### 2.3.3 Stiller ve temalar
 
 Stil ve tema isimlendirmeleri BuyukKucuk isimlendirme şeklinde yapılmalıdır. 
 
@@ -619,7 +618,7 @@ Stil ve tema isimlendirmeleri BuyukKucuk isimlendirme şeklinde yapılmalıdır.
     TitleTextStyle
     
     
-### 2.3.3 XML Attribute sıralanması
+### 2.3.4 XML Attribute sıralanması
 Attribute sıralaması için Android Studio içerisinde bir fonksiyon bulunmalıdır. XML ile ilgili yaptığımız değişikliklikler sonrası bu fonksiyonu çalıştırmalıyız. 
 
 Windows bilgisayarlar için çalıştırma yöntemi;
