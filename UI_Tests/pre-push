@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Show a dialog to ask if UI Tests should be run and results pushed to Sonarqube
+RUNTESTS="$(osascript -e 'display dialog "Do you want to run UI Tests and Sonarqube?" buttons {"Yes", "No"} default button "No"')"
+
+if [ "$RUNTESTS" = "button returned:Yes" ]; then
+    # If Yes then run the gradle task
+    echo "Alright, running tests."
+    ./gradlew clean sonarqube --continue
+else
+    # If no then just continue to git push
+    echo "No, not running tests."
+fi
