@@ -25,7 +25,7 @@ When contributing work, the project should maintain the following structure:
 
 The structure of the project should remain as defined above whenever you are modifying or adding new features.
 
-Using this structure allows us to keep the application code seperated from any test-related code. The CommonTest directory allows us to share classes between the functional and unit tests, such as mock model creation and dagger test configuration classes.
+Using this structure allows us to keep the application code separated from any test-related code. The CommonTest directory allows us to share classes between the functional and unit tests, such as mock model creation and dagger test configuration classes.
 
 
 ### 1.2 File Naming
@@ -49,7 +49,7 @@ When naming resource files you should be sure to name them using lowercase lette
 
 	activity_main, fragment_user, item_post
 
-This convention again makes it really easy to locate the specific layout file that you're looking for. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a file. Other than this, begining the file name with the component name makes it clear what component/class the layout file is being used for.
+This convention again makes it really easy to locate the specific layout file that you're looking for. Within android studio, the layout package is sorted in alphabetical order meaning that activity, fragment and other layout types becomes grouped - so you know where to begin looking for a file. Other than this, beginning the file name with the component name makes it clear what component/class the layout file is being used for.
 
 
 #### 1.2.2.1 Drawable Files
