@@ -11,7 +11,7 @@ Here you'll find:
   * [CheckStyle Configuration](/Code_Quality/checkstyle)  
   * [FindBugs Configuration](/Code_Quality/findbugs)  
   * [PMD Configuration](/Code_Quality/pmd) 
-2. [Project Guidelines] (/project_style_guidelines.md) 
+2. [Project Guidelines](project_style_guidelines.md) 
 
 ##Licence
 
