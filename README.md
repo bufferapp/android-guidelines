@@ -1,4 +1,4 @@
-#Android Guidelines
+# Android Guidelines
 -------------------
 
 Welcome to the Android Guidelines repo 👋 
@@ -13,7 +13,7 @@ Here you'll find:
   * [PMD Configuration](/Code_Quality/pmd) 
 2. [Project Guidelines] (/project_style_guidelines.md) 
 
-##Licence
+## Licence
 
 ```
 Copyright 2016 Buffer, Inc.
