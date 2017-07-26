@@ -1,5 +1,4 @@
 # Pull Request Guidelines
----------------------------
 
 The following guidelines state some general approaches we take when it comes to Pull Request for the Android project 🙂
 
