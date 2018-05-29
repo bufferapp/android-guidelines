@@ -1,4 +1,4 @@
-#Android Kod Yazım Kılavuzu	
+Android Kod Yazım Kılavuzu	
 ---------------------------
 
 Bu dokümanın amacı Android uygulama geliştirirken bize yardımcı olacak kod yazım prensiplerini belirlemektir. Uygulama geliştirirken bu dokümana göre hareket etmek temiz ve istikrarlı kod yazımında bize yardımcı olacaktır.
